@@ -1,20 +1,26 @@
-import React, { Component } from 'react'
+import React from 'react'
 import JobsGridCard from './JobsGridCard'
+import axios from 'axios'
 
 
 const urlBase = "https://us-central1-labenu-apis.cloudfunctions.net/futureNinjasOne/jobs"
 
 
-export default class Jobs extends Component {
+ class Jobs extends React.Component {
     state = {
         allCards: []
     }
 
+    componentDidMount() {
+      this.fetchAllCards()
+    }
 
     fetchAllCards = () => {
         axios.get(urlBase)
         .then((res) => {
             this.setState({allCards: res.data.jobs})
+        }).catch((err) =>{
+          console.log(err.message)
         })
     }
 
@@ -22,10 +28,14 @@ export default class Jobs extends Component {
 
   render() {
     return (
-    <JobsGridCard
-    allCards = {this.state.allCards}
-    /> 
+      <div>
+        <JobsGridCard
+      allCards = {this.state.allCards}
+      /> 
+      </div>
               
     )
   }
 }
+
+export default Jobs;
