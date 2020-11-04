@@ -6,7 +6,9 @@ const urlBase = "https://us-central1-labenu-apis.cloudfunctions.net/futureNinjas
 class Filter extends React.Component {
     state = {
         allCards: [],
-        sortTitle: "Z-A",
+        sortTitleBy: "Z-A",
+        sortPriceBy: "priciest",
+        sortDateBy: "newest",
     }
 
     componentDidMount() {
@@ -27,7 +29,8 @@ class Filter extends React.Component {
             const comparison = (a.title.toLowerCase() > b.title.toLowerCase()) ? 1 : -1
             return comparison
         })
-        switch (this.state.sortTitle) {
+
+        switch (this.state.sortTitleBy) {
             case "A-Z":
                 return sortedArray
             case "Z-A":
@@ -35,8 +38,43 @@ class Filter extends React.Component {
         }
     }
 
+    sortByPrice = (arrayOfObjects) => {
+        const sortedArray = arrayOfObjects.sort((a, b) => {
+            return a.value - b.value
+        })
+
+        switch (this.state.sortPriceBy) {
+            case "cheapest":
+                return sortedArray
+            case "priciest":
+                return sortedArray.reverse()
+        }
+    }
+
+    sortByDueDate = (arrayOfObjects) => {
+        const sortedArray = arrayOfObjects.sort((a, b) => {
+            const dateArrayA = a.dueDate.split("-")
+            const dateArrayB = b.dueDate.split("-")
+
+            if (dateArrayA[0] != dateArrayB[0]) {
+                return Number(dateArrayA[0]) - Number(dateArrayB[0])
+            } else if (dateArrayA[1] !== dateArrayB[1]) {
+                return Number(dateArrayA[1]) - Number(dateArrayB[1])
+            } else {
+                return Number(dateArrayA[2]) - Number(dateArrayB[2])
+            }
+        })
+
+        switch (this.state.sortDateBy) {
+            case "newest":
+                return sortedArray
+            case "oldest":
+                return sortedArray.reverse()
+        }
+    }
+
     render() {
-        console.log(this.sortTitleAlphabetically(this.state.allCards))
+        console.log(this.sortByDueDate(this.state.allCards))
         return (
             <div>
 
