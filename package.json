@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "-": "0.0.1",
     "@material-ui/core": "^4.11.0",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.5.0",
@@ -10,7 +11,7 @@
     "axios": "^0.19.2",
     "bootstrap": "^4.5.3",
     "jss": "^10.1.1",
-    "react": "^16.13.1",
+    "react": "^16.14.0",
     "react-bootstrap": "^1.4.0",
     "react-dom": "^16.13.1",
     "react-jss": "8.0.0",

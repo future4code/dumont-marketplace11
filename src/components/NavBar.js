@@ -6,12 +6,12 @@ import { TextField, Button } from '@material-ui/core';
 const NavHeader = styled.header`
     display: flex;
     align-items: center;
-    justify-content: space-evenly;
+    justify-content: space-between;
 `
 
 const Logo = styled.img`
     align-self: flex-start;
-    width: 15vw;
+    width: 8vw;
 `
 
 class NavBar extends React.Component {
