@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import JobsGridCard from './JobsGridCard'
 import axios from 'axios'
+import Filter from './Filter'
 
 const urlBase = "https://us-central1-labenu-apis.cloudfunctions.net/futureNinjasOne/jobs"
 
@@ -29,9 +30,10 @@ class Jobs extends React.Component {
    render() {
         return (
       <div>
-         <JobsGridCard
-          allCards = {this.state.allCards}
-          />
+        <Filter allCards = {this.state.allCards} />
+        <JobsGridCard
+      allCards = {this.state.allCards}
+      /> 
       </div>
 
     )

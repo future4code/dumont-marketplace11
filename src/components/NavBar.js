@@ -6,23 +6,30 @@ import { TextField, Button } from '@material-ui/core';
 const NavHeader = styled.header`
     display: flex;
     align-items: center;
-    justify-content: space-evenly;
+    justify-content: space-between;
 `
 
 const Logo = styled.img`
     align-self: flex-start;
-    width: 15vw;
+    width: 8vw;
 `
 
 class NavBar extends React.Component {
 
     state = {
         inputSearchValue: "",
-        currentPage: "home" //vai receber o state do App
     }
 
     onChangeInputSearch = (event) => {
         this.setState({ inputSearchValue: event.target.value })
+    }
+
+    scrollToAbout = () => {
+        window.scrollTo(0, 700)
+    }
+
+    scrollToHow = () => {
+        window.scrollTo(0, 800)
     }
 
 	render(){
@@ -30,8 +37,8 @@ class NavBar extends React.Component {
 		return (
 			<NavHeader>
                 <Logo src={logo} alt={"logo da FutureNinja"}/>
-                <a><Button color="primary">Quem somos?</Button></a>
-                <a><Button color="primary">Como funciona?</Button></a>
+                <Button onClick={this.scrollToAbout} color="primary">Quem somos?</Button>
+                <Button onClick={this.scrollToHow} color="primary">Como funciona?</Button>
                 
                 <TextField 
                     size="small" 
@@ -42,8 +49,13 @@ class NavBar extends React.Component {
                     variant="outlined" 
                 />
 
-                {this.state.currentPage !== "home" ? <Button variant="contained">Voltar</Button> : null }
-                <Button variant="contained" color="primary">Oferecer</Button>
+                {this.props.currentPage !== "home" ? 
+                <Button variant="contained" onClick={this.props.goToHomePage}>
+                    Home
+                </Button> : null }
+                <Button variant="contained" onClick={this.props.goToRegistrationPage} color="primary">
+                    Oferecer
+                    </Button>
             </NavHeader>
 		)
 	}
