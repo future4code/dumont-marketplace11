@@ -16,14 +16,6 @@ const Logo = styled.img`
 
 class NavBar extends React.Component {
 
-    state = {
-        inputSearchValue: "",
-    }
-
-    onChangeInputSearch = (event) => {
-        this.setState({ inputSearchValue: event.target.value })
-    }
-
     scrollToAbout = () => {
         window.scrollTo(0, 700)
     }
@@ -34,28 +26,33 @@ class NavBar extends React.Component {
 
 	render(){
 
+        const inputSearch = ( 
+            <TextField 
+                size="small" 
+                value={this.props.inputSearchValue}  
+                onChange={this.props.onChangeInputSearch}
+                id="outlined-basic" 
+                label="Buscar" 
+                variant="outlined" 
+            /> 
+        )
+
+        const homeButton = ( 
+            <Button variant="contained" onClick={this.props.goToHomePage}>
+                Home
+            </Button>
+        )
+
 		return (
 			<NavHeader>
                 <Logo src={logo} alt={"logo da FutureNinja"}/>
                 <Button onClick={this.scrollToAbout} color="primary">Quem somos?</Button>
                 <Button onClick={this.scrollToHow} color="primary">Como funciona?</Button>
-                
-                <TextField 
-                    size="small" 
-                    value={this.state.inputSearchValue}  
-                    onChange={this.onChangeInputSearch}
-                    id="outlined-basic" 
-                    label="Buscar" 
-                    variant="outlined" 
-                />
-
-                {this.props.currentPage !== "home" ? 
-                <Button variant="contained" onClick={this.props.goToHomePage}>
-                    Home
-                </Button> : null }
+                {this.props.currentPage !== "registration" ? inputSearch : null }
+                {this.props.currentPage !== "home" ? homeButton : null }
                 <Button variant="contained" onClick={this.props.goToRegistrationPage} color="primary">
                     Oferecer
-                    </Button>
+                </Button>
             </NavHeader>
 		)
 	}

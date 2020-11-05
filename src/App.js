@@ -9,15 +9,14 @@ import Registration from './components/Registration';
 class App extends React.Component {
 
 	state = {
-		currentPage: "home"
+		currentPage: "home",
+		inputSearchValue: ""
 	}
 
-	//Funções de Navegação, todas vão ser chamadas no NavBar
 	goToHomePage = () => {
 		this.setState({ currentPage: "home"})
 	}
 
-	//Função para ser chamada no CategoryCard
 	goToJobViewPage = () => {
 		this.setState({ currentPage: "job-view"})
 	}
@@ -25,6 +24,10 @@ class App extends React.Component {
 	goToRegistrationPage = () => {
 		this.setState({ currentPage: "registration"})
 	}
+
+	onChangeInputSearch = (event) => {
+        this.setState({ inputSearchValue: event.target.value })
+    }
 
 	render(){
 		let renderedPage = ""
@@ -49,6 +52,7 @@ class App extends React.Component {
 					goToHomePage={this.goToHomePage}
 					goToJobViewPage={this.goToJobViewPage}
 					goToRegistrationPage={this.goToRegistrationPage}
+					onChangeInputSearch={this.onChangeInputSearch}
 				/>
 				{renderedPage}
 				<Footer/>
