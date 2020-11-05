@@ -16,6 +16,14 @@ const Logo = styled.img`
 
 class NavBar extends React.Component {
 
+    scrollToAbout = () => {
+        window.scrollTo(0, 700)
+    }
+
+    scrollToHow = () => {
+        window.scrollTo(0, 800)
+    }
+
 	render(){
 
         const inputSearch = ( 
@@ -38,8 +46,8 @@ class NavBar extends React.Component {
 		return (
 			<NavHeader>
                 <Logo src={logo} alt={"logo da FutureNinja"}/>
-                <a><Button color="primary">Quem somos?</Button></a>
-                <a><Button color="primary">Como funciona?</Button></a>
+                <Button onClick={this.scrollToAbout} color="primary">Quem somos?</Button>
+                <Button onClick={this.scrollToHow} color="primary">Como funciona?</Button>
                 {this.props.currentPage !== "registration" ? inputSearch : null }
                 {this.props.currentPage !== "home" ? homeButton : null }
                 <Button variant="contained" onClick={this.props.goToRegistrationPage} color="primary">
