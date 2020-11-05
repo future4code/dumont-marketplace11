@@ -1,6 +1,7 @@
 import React from 'react'
 import JobsGridCard from './JobsGridCard'
 import axios from 'axios'
+import Filter from './Filter'
 
 
 const urlBase = "https://us-central1-labenu-apis.cloudfunctions.net/futureNinjasOne/jobs"
@@ -29,6 +30,7 @@ const urlBase = "https://us-central1-labenu-apis.cloudfunctions.net/futureNinjas
   render() {
     return (
       <div>
+        <Filter allCards={this.state.allCards} />
         <JobsGridCard
       allCards = {this.state.allCards}
       /> 

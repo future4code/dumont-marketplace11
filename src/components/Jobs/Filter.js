@@ -5,7 +5,6 @@ const urlBase = "https://us-central1-labenu-apis.cloudfunctions.net/futureNinjas
 
 class Filter extends React.Component {
     state = {
-        allCards: [],
         sortTitleBy: "A-Z",
         sortPriceBy: "",
         sortDateBy: "",
@@ -15,15 +14,6 @@ class Filter extends React.Component {
 
     componentDidMount() {
         this.fetchAllCards()
-    }
-
-    fetchAllCards = () => {
-        axios.get(urlBase)
-            .then((response) => {
-                this.setState({ allCards: response.data.jobs })
-            }).catch((error) => {
-                console.log(error.message)
-            })
     }
 
     filterByText = (arrayOfObjects, text) => {
@@ -118,7 +108,7 @@ class Filter extends React.Component {
     }
 
     render() {
-        console.log(this.combineAllFilters(this.state.allCards, ""))
+        console.log(this.combineAllFilters(this.props.allCards, ""))
         return (
             <div>
 
