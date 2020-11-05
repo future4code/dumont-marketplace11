@@ -5,13 +5,14 @@ import styled from 'styled-components'
 
 const CardDiv = styled.div`
 position: absolute;
-width: 500px;
-height: 500px;
+width: 400px;
+height: 300px;
 display: flex;
 flex-direction: column;
 align-items: center; 
 align-self: center;
-background-color: purple;
+background-color: #9F8FD9;
+border-radius: 10px;
 top: 125px;
 `
 
@@ -29,9 +30,12 @@ box-sizing: border-box;
 display: flex;
 flex-direction: column;
 `
-const Button = styled.button`
-
-
+const Span = styled.span`
+cursor: pointer;
+font-weight: bold;
+display: flex;
+align-self: start;
+margin-left: 5px;
 `   
 
 
@@ -46,9 +50,7 @@ class JobCardDetails extends React.Component {
 
 
     componentDidMount () {
-        
         this.getCardDetails(this.props.idProps)
-        
     }
 
     
@@ -67,8 +69,9 @@ class JobCardDetails extends React.Component {
         return (
             <PageDiv>
               <CardDiv>
-                    <Button onClick= {this.props.close}>X</Button>
+                    <Span onClick= {this.props.close}>X</Span>
                     <h3> Título: {this.state.details.title} </h3>
+                    <hr />
                     <p> Descrição: {this.state.details.description} </p>
                     <p> Prazo:{this.state.details.dueDate} </p>
                     <p> Valor: R$ {this.state.details.value},00</p>
