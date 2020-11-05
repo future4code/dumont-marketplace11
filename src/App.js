@@ -4,7 +4,7 @@ import { AppContainer } from './components/AppContainer'
 import NavBar from './components/NavBar';
 import Footer from './components/Footer';
 import CarouselFeature from './components/Home/CarouselFeature'
-import JobCardDetails from "./components/Jobs/JobCardDetails"
+import CategoryCard from './components/Home/CategoryCard'
 
 class App extends React.Component {
 
@@ -15,7 +15,7 @@ class App extends React.Component {
 			<div>
 				<NavBar/>
 				<AppContainer />
-				<JobCardDetails />
+				<CategoryCard />
 				<CarouselFeature />
 				<Footer/>
 			</div>
