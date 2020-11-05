@@ -9,6 +9,8 @@ class Filter extends React.Component {
         sortTitleBy: "Z-A",
         sortPriceBy: "priciest",
         sortDateBy: "newest",
+        minValue: 0,
+        maxValue: Infinity,
     }
 
     componentDidMount() {
@@ -24,7 +26,38 @@ class Filter extends React.Component {
             })
     }
 
+    filterByText = (arrayOfObjects, text) => {
+        const filteredArray = arrayOfObjects.filter((object) => {
+            if (object.title.includes(text)) {
+                return true
+            } else {
+                return object.description.includes(text)
+            }
+        })
+        return filteredArray
+    }
+
+    filterByValue = (arrayOfObjects) => {
+        let filteredByMin
+        let filteredByBoth
+
+        if (this.state.minValue) {
+            filteredByMin = arrayOfObjects.filter((object) => {
+                return object.value > this.state.minValue
+            })
+        } else { filteredByMin = arrayOfObjects }
+
+        if (this.state.maxValue !== Infinity) {
+            filteredByBoth = filteredByMin.filter((object) => {
+                return object.value < this.state.maxValue
+            })
+        } else { filteredByBoth = filteredByMin }
+
+        return filteredByBoth
+    }
+
     sortTitleAlphabetically = (arrayOfObjects) => {
+        if (!this.state.sortTitleBy) { return arrayOfObjects }
         const sortedArray = arrayOfObjects.sort((a, b) => {
             const comparison = (a.title.toLowerCase() > b.title.toLowerCase()) ? 1 : -1
             return comparison
@@ -39,6 +72,7 @@ class Filter extends React.Component {
     }
 
     sortByPrice = (arrayOfObjects) => {
+        if (!this.state.sortPriceBy) { return arrayOfObjects }
         const sortedArray = arrayOfObjects.sort((a, b) => {
             return a.value - b.value
         })
@@ -52,6 +86,7 @@ class Filter extends React.Component {
     }
 
     sortByDueDate = (arrayOfObjects) => {
+        if (!this.state.sortDateBy) { return arrayOfObjects }
         const sortedArray = arrayOfObjects.sort((a, b) => {
             const dateArrayA = a.dueDate.split("-")
             const dateArrayB = b.dueDate.split("-")
@@ -74,7 +109,7 @@ class Filter extends React.Component {
     }
 
     render() {
-        console.log(this.sortByDueDate(this.state.allCards))
+        console.log(this.filterByText(this.state.allCards, "sob"))
         return (
             <div>
 
