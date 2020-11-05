@@ -3,7 +3,6 @@ import Carousel from "react-bootstrap/Carousel";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-import logo from "../../img/logo420H.jpg";
 import mechanic from "../../img/mechanic.jpg";
 import personal from "../../img/personal.jpg";
 import programmer from "../../img/programmer.jpg";
