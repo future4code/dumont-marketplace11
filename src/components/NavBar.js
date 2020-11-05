@@ -18,7 +18,6 @@ class NavBar extends React.Component {
 
     state = {
         inputSearchValue: "",
-        currentPage: "home" //vai receber o state do App
     }
 
     onChangeInputSearch = (event) => {
@@ -42,8 +41,13 @@ class NavBar extends React.Component {
                     variant="outlined" 
                 />
 
-                {this.state.currentPage !== "home" ? <Button variant="contained">Voltar</Button> : null }
-                <Button variant="contained" color="primary">Oferecer</Button>
+                {this.props.currentPage !== "home" ? 
+                <Button variant="contained" onClick={this.props.goToHomePage}>
+                    Home
+                </Button> : null }
+                <Button variant="contained" onClick={this.props.goToRegistrationPage} color="primary">
+                    Oferecer
+                    </Button>
             </NavHeader>
 		)
 	}

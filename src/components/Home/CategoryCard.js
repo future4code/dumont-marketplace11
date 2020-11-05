@@ -17,14 +17,14 @@ class JobCardDetails extends React.Component {
     render(){
         return(
             <DivDetails>
-               <Img src="https://www.flaticon.com/svg/static/icons/svg/1995/1995390.svg"/>
-               <Img src="https://www.flaticon.com/svg/static/icons/svg/1995/1995394.svg"/>
-               <Img src="https://www.flaticon.com/svg/static/icons/svg/1995/1995401.svg"/>
-               <Img src="https://www.flaticon.com/svg/static/icons/svg/1995/1995392.svg"/>
-               <Img src="https://www.flaticon.com/svg/static/icons/svg/1995/1995407.svg"/>
-               <Img src="https://www.flaticon.com/svg/static/icons/svg/1995/1995417.svg"/>
-               <Img src="https://www.flaticon.com/svg/static/icons/svg/1995/1995385.svg"/>
-               <Img src="https://www.flaticon.com/svg/static/icons/svg/1995/1995413.svg"/>
+               <Img onClick={this.props.goToJobViewPage} src="https://www.flaticon.com/svg/static/icons/svg/1995/1995390.svg"/>
+               <Img onClick={this.props.goToJobViewPage} src="https://www.flaticon.com/svg/static/icons/svg/1995/1995394.svg"/>
+               <Img onClick={this.props.goToJobViewPage} src="https://www.flaticon.com/svg/static/icons/svg/1995/1995401.svg"/>
+               <Img onClick={this.props.goToJobViewPage} src="https://www.flaticon.com/svg/static/icons/svg/1995/1995392.svg"/>
+               <Img onClick={this.props.goToJobViewPage} src="https://www.flaticon.com/svg/static/icons/svg/1995/1995407.svg"/>
+               <Img onClick={this.props.goToJobViewPage} src="https://www.flaticon.com/svg/static/icons/svg/1995/1995417.svg"/>
+               <Img onClick={this.props.goToJobViewPage} src="https://www.flaticon.com/svg/static/icons/svg/1995/1995385.svg"/>
+               <Img onClick={this.props.goToJobViewPage} src="https://www.flaticon.com/svg/static/icons/svg/1995/1995413.svg"/>
             </DivDetails>
         )
     }

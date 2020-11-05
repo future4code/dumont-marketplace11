@@ -9,7 +9,7 @@ import Registration from './components/Registration';
 class App extends React.Component {
 
 	state = {
-		currentPage: "home" //mudar estaticamente para visualizar as páginas
+		currentPage: "home"
 	}
 
 	//Funções de Navegação, todas vão ser chamadas no NavBar
@@ -30,7 +30,7 @@ class App extends React.Component {
 		let renderedPage = ""
 		switch ( this.state.currentPage ){
 			case "home" :
-				renderedPage = <HomePage />
+				renderedPage = <HomePage goToJobViewPage={this.goToJobViewPage}/>
 				break;
 			case "job-view" :
 				renderedPage = <Jobs />
@@ -44,7 +44,12 @@ class App extends React.Component {
 
 		return (
 			<div>
-				<NavBar/>
+				<NavBar
+					currentPage={this.state.currentPage}
+					goToHomePage={this.goToHomePage}
+					goToJobViewPage={this.goToJobViewPage}
+					goToRegistrationPage={this.goToRegistrationPage}
+				/>
 				{renderedPage}
 				<Footer/>
 			</div>
