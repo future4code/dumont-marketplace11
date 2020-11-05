@@ -24,13 +24,21 @@ class NavBar extends React.Component {
         this.setState({ inputSearchValue: event.target.value })
     }
 
+    scrollToAbout = () => {
+        window.scrollTo(0, 700)
+    }
+
+    scrollToHow = () => {
+        window.scrollTo(0, 800)
+    }
+
 	render(){
 
 		return (
 			<NavHeader>
                 <Logo src={logo} alt={"logo da FutureNinja"}/>
-                <a><Button color="primary">Quem somos?</Button></a>
-                <a><Button color="primary">Como funciona?</Button></a>
+                <Button onClick={this.scrollToAbout} color="primary">Quem somos?</Button>
+                <Button onClick={this.scrollToHow} color="primary">Como funciona?</Button>
                 
                 <TextField 
                     size="small" 

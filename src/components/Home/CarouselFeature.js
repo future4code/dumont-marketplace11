@@ -4,53 +4,37 @@ import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import logo from "../../img/logo420H.jpg";
-import Image from "../../img/doctor.jpg";
-
+import mechanic from "../../img/mechanic.jpg";
+import personal from "../../img/personal.jpg";
+import programmer from "../../img/programmer.jpg";
 
 class CarouselFeature extends React.Component {
   render() {
     return (
       <Container>
-        <Row className="justify-content-center m-0">
+        <Row className="justify-content-center">
           <Col md="5">
             <div>
-              <img src={logo} />
-              <p></p>
+              <p>O talento certo, no momento certo.</p>
             </div>
           </Col>
           <Col md="5">
             <Carousel>
               <Carousel.Item>
                 <img
-                  className="d-flex m-0 p-0"
-                  src={Image}
+                  className="d-block"
+                  src={mechanic}
                   alt="First slide"
                 />
-                <Carousel.Caption>
-                  <h3>First slide label</h3>
-                  <p>
-                    Nulla vitae elit libero, a pharetra augue mollis interdum.
-                  </p>
-                </Carousel.Caption>
+                
               </Carousel.Item>
               <Carousel.Item>
-                <img className="d-flex" src={Image} alt="Third slide" />
-                <Carousel.Caption>
-                  <h3>Second slide label</h3>
-                  <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                  </p>
-                </Carousel.Caption>
+                <img className="d-block" src={personal} alt="Third slide" />
+                
               </Carousel.Item>
               <Carousel.Item>
-                <img className="d-flex" src={Image} alt="Third slide" />
-                <Carousel.Caption>
-                  <h3>Third slide label</h3>
-                  <p>
-                    Praesent commodo cursus magna, vel scelerisque nisl
-                    consectetur.
-                  </p>
-                </Carousel.Caption>
+                <img className="d-block" src={programmer} alt="Third slide" />
+                
               </Carousel.Item>
             </Carousel>
           </Col>
