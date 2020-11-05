@@ -1,15 +1,16 @@
-import React from 'react'
+import React, { Component } from 'react'
 import JobsGridCard from './JobsGridCard'
 import axios from 'axios'
 import Filter from './Filter'
 
-
 const urlBase = "https://us-central1-labenu-apis.cloudfunctions.net/futureNinjasOne/jobs"
 
 
- class Jobs extends React.Component {
+class Jobs extends React.Component {
     state = {
-        allCards: []
+        allCards: [],
+        seeInfo: false,
+        cardDet: ""
     }
 
     componentDidMount() {
@@ -26,16 +27,15 @@ const urlBase = "https://us-central1-labenu-apis.cloudfunctions.net/futureNinjas
     }
 
 
-
-  render() {
-    return (
+   render() {
+        return (
       <div>
         <Filter allCards = {this.state.allCards} />
         <JobsGridCard
       allCards = {this.state.allCards}
       /> 
       </div>
-              
+
     )
   }
 }
