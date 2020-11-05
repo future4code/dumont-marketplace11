@@ -30,7 +30,7 @@ const urlBase = "https://us-central1-labenu-apis.cloudfunctions.net/futureNinjas
   render() {
     return (
       <div>
-        <Filter allCards={this.state.allCards} />
+        <Filter allCards = {this.state.allCards} />
         <JobsGridCard
       allCards = {this.state.allCards}
       /> 

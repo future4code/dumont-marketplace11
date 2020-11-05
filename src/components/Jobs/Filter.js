@@ -12,10 +12,6 @@ class Filter extends React.Component {
         maxValue: Infinity,
     }
 
-    componentDidMount() {
-        this.fetchAllCards()
-    }
-
     filterByText = (arrayOfObjects, text) => {
         const filteredArray = arrayOfObjects.filter((object) => {
             if (object.title.includes(text)) {
@@ -108,7 +104,8 @@ class Filter extends React.Component {
     }
 
     render() {
-        console.log(this.combineAllFilters(this.props.allCards, ""))
+        if (this.props.allCards !== []) { console.log(this.combineAllFilters(this.props.allCards, "")) }
+        console.log(this.props.allCards)
         return (
             <div>
 
