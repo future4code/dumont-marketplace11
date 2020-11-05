@@ -16,38 +16,35 @@ const Logo = styled.img`
 
 class NavBar extends React.Component {
 
-    state = {
-        inputSearchValue: "",
-    }
-
-    onChangeInputSearch = (event) => {
-        this.setState({ inputSearchValue: event.target.value })
-    }
-
 	render(){
+
+        const inputSearch = ( 
+            <TextField 
+                size="small" 
+                value={this.props.inputSearchValue}  
+                onChange={this.props.onChangeInputSearch}
+                id="outlined-basic" 
+                label="Buscar" 
+                variant="outlined" 
+            /> 
+        )
+
+        const homeButton = ( 
+            <Button variant="contained" onClick={this.props.goToHomePage}>
+                Home
+            </Button>
+        )
 
 		return (
 			<NavHeader>
                 <Logo src={logo} alt={"logo da FutureNinja"}/>
                 <a><Button color="primary">Quem somos?</Button></a>
                 <a><Button color="primary">Como funciona?</Button></a>
-                
-                <TextField 
-                    size="small" 
-                    value={this.state.inputSearchValue}  
-                    onChange={this.onChangeInputSearch}
-                    id="outlined-basic" 
-                    label="Buscar" 
-                    variant="outlined" 
-                />
-
-                {this.props.currentPage !== "home" ? 
-                <Button variant="contained" onClick={this.props.goToHomePage}>
-                    Home
-                </Button> : null }
+                {this.props.currentPage !== "registration" ? inputSearch : null }
+                {this.props.currentPage !== "home" ? homeButton : null }
                 <Button variant="contained" onClick={this.props.goToRegistrationPage} color="primary">
                     Oferecer
-                    </Button>
+                </Button>
             </NavHeader>
 		)
 	}
