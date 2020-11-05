@@ -8,7 +8,7 @@ class HomePage extends React.Component {
 
 		return (
 			<div>
-                <CategoryCard />
+                <CategoryCard goToJobViewPage={this.props.goToJobViewPage}/>
 				<CarouselFeature />
             </div>
 		)
