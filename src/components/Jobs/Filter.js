@@ -6,9 +6,9 @@ const urlBase = "https://us-central1-labenu-apis.cloudfunctions.net/futureNinjas
 class Filter extends React.Component {
     state = {
         allCards: [],
-        sortTitleBy: "Z-A",
-        sortPriceBy: "priciest",
-        sortDateBy: "newest",
+        sortTitleBy: "A-Z",
+        sortPriceBy: "",
+        sortDateBy: "",
         minValue: 0,
         maxValue: Infinity,
     }
@@ -108,8 +108,17 @@ class Filter extends React.Component {
         }
     }
 
+    combineAllFilters = (arrayOfObjects, text) => {
+        const filteredArray = this.filterByValue(
+            this.filterByText(arrayOfObjects, text)
+        )
+
+        const sortedAndFilteredArray = this.sortTitleAlphabetically(this.sortByPrice(this.sortByDueDate(filteredArray)))
+        return sortedAndFilteredArray
+    }
+
     render() {
-        console.log(this.filterByText(this.state.allCards, "sob"))
+        console.log(this.combineAllFilters(this.state.allCards, ""))
         return (
             <div>
 

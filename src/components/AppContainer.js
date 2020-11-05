@@ -6,7 +6,6 @@ export class AppContainer extends Component {
     return (
       <div>
         <p>Pronto para começar!</p>
-        <Filter />
       </div>
     )
   }
