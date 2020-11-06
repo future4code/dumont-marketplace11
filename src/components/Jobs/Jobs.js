@@ -27,13 +27,20 @@ class Jobs extends React.Component {
       })
   }
 
+  fetchFilteredArray = (array) => {
+    this.setState({ filteredCards: array })
+  }
 
   render() {
     return (
       <div>
-        <Filter allCards={this.state.allCards} searchedJob={this.props.searchedJob} />
-        <JobsGridCard
+        <Filter
           allCards={this.state.allCards}
+          searchedJob={this.props.searchedJob}
+          fetchFilteredArray={this.fetchFilteredArray}
+        />
+        <JobsGridCard
+          allCards={this.state.filteredCards.length === 0 ? this.state.allCards : this.state.filteredCards }
         />
       </div>
 

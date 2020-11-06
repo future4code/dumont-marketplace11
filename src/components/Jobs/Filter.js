@@ -9,6 +9,23 @@ class Filter extends React.Component {
         maxValue: "",
     }
 
+    componentDidMount = () => {
+        this.updateCardsArray()
+        console.log(this.props.allCards)
+    }
+
+    componentDidUpdate = (prevProps) => {
+        if (prevProps.allCards === []) {
+            this.updateCardsArray()
+        }
+    }
+
+    updateCardsArray = () => {
+        const fullyFilteredArray = this.combineAllFilters(this.props.allCards, this.props.searchedJob)
+        console.log(fullyFilteredArray)
+        this.props.fetchFilteredArray(fullyFilteredArray)
+    }
+
     filterByText = (arrayOfObjects, text) => {
         const filteredArray = arrayOfObjects.filter((object) => {
             if (object.title.toLowerCase().includes(text.toLowerCase())) {
@@ -73,7 +90,6 @@ class Filter extends React.Component {
         const sortedArray = arrayOfObjects.sort((a, b) => {
             const dateArrayA = a.dueDate.split("/")
             const dateArrayB = b.dueDate.split("/")
-            console.log(dateArrayA)
 
             if (dateArrayA[2] != dateArrayB[2]) {
                 return Number(dateArrayA[2]) - Number(dateArrayB[2])
@@ -130,7 +146,6 @@ class Filter extends React.Component {
     }
 
     render() {
-        if (this.props.allCards !== []) { console.log(this.combineAllFilters(this.props.allCards, this.props.searchedJob)) }
         return (
             <div>
                 <div>
@@ -154,7 +169,6 @@ class Filter extends React.Component {
                         <option value="" disabled>Por data limite</option>
                         <option value="newest">Mais próxima</option>
                         <option value="oldest">Mais longe</option>
-
                     </select>
                 </div>
             </div>
