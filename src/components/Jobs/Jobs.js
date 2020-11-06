@@ -8,6 +8,12 @@ const NotFoundContainer = styled.div`
   text-align: center;
   padding: 10vh;
 `
+const P = styled.p`
+  font-family: nove, sans-serif;
+	color: #8662d0;
+  font-size: 40px;
+
+`
 
 const urlBase = "https://us-central1-labenu-apis.cloudfunctions.net/futureNinjasOne/jobs"
 
@@ -44,7 +50,7 @@ class Jobs extends React.Component {
       } else if (!this.state.filteredCards.length) {
         return (
           <NotFoundContainer>
-            <p>Serviço não encontrado!</p>
+            <P>Serviço não encontrado!</P>
           </NotFoundContainer>
         )
       } else {

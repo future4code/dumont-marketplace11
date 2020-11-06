@@ -16,12 +16,13 @@ const Card = styled.div`
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin: 0;
+    margin-bottom: 2em;
     padding: 0;    
 `
 
-const Tittle = styled.h2`
-    margin: 0;
+const Tittle = styled.h3`
+    text-align: center;
+    padding: 30px;
 `
 
 class JobCard extends React.Component {
