@@ -14,35 +14,36 @@ class App extends React.Component {
 	}
 
 	goToHomePage = () => {
-		this.setState({ currentPage: "home"})
+		this.setState({ currentPage: "home" })
 	}
 
 	goToJobViewPage = () => {
-		this.setState({ currentPage: "job-view"})
+		this.setState({ currentPage: "job-view" })
 	}
 
 	goToRegistrationPage = () => {
-		this.setState({ currentPage: "registration"})
+		this.setState({ currentPage: "registration" })
 	}
 
 	onChangeInputSearch = (event) => {
-        this.setState({ inputSearchValue: event.target.value })
-    }
+		if (this.state.currentPage !== "job-view") { this.goToJobViewPage() }
+		this.setState({ inputSearchValue: event.target.value, })
+	}
 
-	render(){
+	render() {
 		let renderedPage = ""
-		switch ( this.state.currentPage ){
-			case "home" :
-				renderedPage = <HomePage goToJobViewPage={this.goToJobViewPage}/>
+		switch (this.state.currentPage) {
+			case "home":
+				renderedPage = <HomePage goToJobViewPage={this.goToJobViewPage} />
 				break;
-			case "job-view" :
+			case "job-view":
 				renderedPage = <Jobs searchedJob={this.state.inputSearchValue} />
-				break;	
-			case "registration" :
+				break;
+			case "registration":
 				renderedPage = <Registration />
 				break;
-			default :
-				renderedPage = <HomePage />			
+			default:
+				renderedPage = <HomePage />
 		}
 
 		return (
@@ -55,7 +56,7 @@ class App extends React.Component {
 					onChangeInputSearch={this.onChangeInputSearch}
 				/>
 				{renderedPage}
-				<Footer/>
+				<Footer />
 			</div>
 		)
 	}

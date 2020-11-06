@@ -9,24 +9,22 @@ class Filter extends React.Component {
         maxValue: "",
     }
 
-    componentDidMount = () => {
-        this.updateCardsArray()
-        console.log(this.props.allCards)
-    }
-
     componentDidUpdate = (prevProps) => {
-        if (prevProps.allCards === []) {
-            this.updateCardsArray()
+        console.log("props no update", this.props.searchedJob)
+        if (prevProps.allCards === [] || prevProps.searchedJob !== this.props.searchedJob) {
+            console.log("dentro do if do didUpdate")
+            this.updateCardsArray(this.props.searchedJob)
         }
     }
 
-    updateCardsArray = () => {
-        const fullyFilteredArray = this.combineAllFilters(this.props.allCards, this.props.searchedJob)
+    updateCardsArray = (text) => {
+        const fullyFilteredArray = this.combineAllFilters(this.props.allCards, text)
         console.log(fullyFilteredArray)
         this.props.fetchFilteredArray(fullyFilteredArray)
     }
 
     filterByText = (arrayOfObjects, text) => {
+        console.log("filtro por texto")
         const filteredArray = arrayOfObjects.filter((object) => {
             if (object.title.toLowerCase().includes(text.toLowerCase())) {
                 return true
@@ -112,6 +110,7 @@ class Filter extends React.Component {
         const filteredArray = this.filterByValue(
             this.filterByText(arrayOfObjects, text)
         )
+        console.log(filteredArray)
 
         const sortedAndFilteredArray = this.sortTitleAlphabetically(this.sortByPrice(this.sortByDueDate(filteredArray)))
         return sortedAndFilteredArray
@@ -119,12 +118,12 @@ class Filter extends React.Component {
 
     onChangeMinInput = (event) => {
         this.setState({ minValue: event.target.value }, () => {
-            this.updateCardsArray()
+            this.updateCardsArray(this.props.searchedJob)
         })
     }
     onChangeMaxInput = (event) => {
         this.setState({ maxValue: event.target.value }, () => {
-            this.updateCardsArray()
+            this.updateCardsArray(this.props.searchedJob)
         })
     }
     onChangeSortByTitle = (event) => {
@@ -133,7 +132,7 @@ class Filter extends React.Component {
             sortPriceBy: "",
             sortDateBy: ""
         }, () => {
-            this.updateCardsArray()
+            this.updateCardsArray(this.props.searchedJob)
         })
     }
     onChangeSortByPrice = (event) => {
@@ -142,7 +141,7 @@ class Filter extends React.Component {
             sortPriceBy: event.target.value,
             sortDateBy: ""
         }, () => {
-            this.updateCardsArray()
+            this.updateCardsArray(this.props.searchedJob)
         })
     }
     onChangeSortByDate = (event) => {
@@ -151,7 +150,7 @@ class Filter extends React.Component {
             sortPriceBy: "",
             sortDateBy: event.target.value
         }, () => {
-            this.updateCardsArray()
+            this.updateCardsArray(this.props.searchedJob)
         })
     }
 
