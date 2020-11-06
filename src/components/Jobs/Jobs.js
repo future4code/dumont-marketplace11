@@ -32,6 +32,15 @@ class Jobs extends React.Component {
   }
 
   render() {
+    const pickArrayToRender =() => {
+      if (!this.props.searchedJob) { // Se o campo de busca estiver vazio
+        return <JobsGridCard allCards={this.state.allCards} />
+      } else if (!this.state.filteredCards.length) { // Se buscar por trabalho inexistente
+        return <p>Deu erro, DIANA E NICOLE ARRUMEM AQUI FAÇAM UMA MENSAGEM de erro BONITA (POR FAVOR)</p>
+      } else {
+        return <JobsGridCard allCards={this.state.filteredCards} />
+      }
+    }
     return (
       <div>
         <Filter
@@ -39,9 +48,7 @@ class Jobs extends React.Component {
           searchedJob={this.props.searchedJob}
           fetchFilteredArray={this.fetchFilteredArray}
         />
-        <JobsGridCard
-          allCards={this.state.filteredCards.length === 0 ? this.state.allCards : this.state.filteredCards }
-        />
+        {pickArrayToRender()}
       </div>
 
     )
