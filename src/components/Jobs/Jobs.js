@@ -7,33 +7,41 @@ const urlBase = "https://us-central1-labenu-apis.cloudfunctions.net/futureNinjas
 
 
 class Jobs extends React.Component {
-    state = {
-        allCards: [],
-        seeInfo: false,
-        cardDet: ""
-    }
+  state = {
+    allCards: [],
+    filteredCards: [],
+    seeInfo: false,
+    cardDet: ""
+  }
 
-    componentDidMount() {
-      this.fetchAllCards()
-    }
+  componentDidMount() {
+    this.fetchAllCards()
+  }
 
-    fetchAllCards = () => {
-        axios.get(urlBase)
-        .then((res) => {
-            this.setState({allCards: res.data.jobs})
-        }).catch((err) =>{
-          console.log(err.message)
-        })
-    }
+  fetchAllCards = () => {
+    axios.get(urlBase)
+      .then((res) => {
+        this.setState({ allCards: res.data.jobs })
+      }).catch((err) => {
+        console.log(err.message)
+      })
+  }
 
+  fetchFilteredArray = (array) => {
+    this.setState({ filteredCards: array })
+  }
 
-   render() {
-        return (
+  render() {
+    return (
       <div>
-        <Filter allCards = {this.state.allCards} />
+        <Filter
+          allCards={this.state.allCards}
+          searchedJob={this.props.searchedJob}
+          fetchFilteredArray={this.fetchFilteredArray}
+        />
         <JobsGridCard
-      allCards = {this.state.allCards}
-      /> 
+          allCards={this.state.filteredCards.length === 0 ? this.state.allCards : this.state.filteredCards }
+        />
       </div>
 
     )

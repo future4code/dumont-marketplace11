@@ -36,7 +36,7 @@ class App extends React.Component {
 				renderedPage = <HomePage goToJobViewPage={this.goToJobViewPage}/>
 				break;
 			case "job-view" :
-				renderedPage = <Jobs />
+				renderedPage = <Jobs searchedJob={this.state.inputSearchValue} />
 				break;	
 			case "registration" :
 				renderedPage = <Registration />
