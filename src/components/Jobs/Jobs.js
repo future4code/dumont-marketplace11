@@ -40,7 +40,7 @@ class Jobs extends React.Component {
           fetchFilteredArray={this.fetchFilteredArray}
         />
         <JobsGridCard
-          allCards={this.state.filteredCards.length === 0 ? this.state.allCards : this.state.filteredCards }
+          allCards={this.state.filteredCards.length === 0 ? this.state.allCards : this.state.filteredCards} 
         />
       </div>
 
