@@ -1,6 +1,6 @@
 import React from 'react';
 import axios from 'axios';
-import { TextField, Button } from '@material-ui/core';
+import { TextField, Button, LinearProgress } from '@material-ui/core';
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
@@ -29,10 +29,12 @@ class Registration extends React.Component {
 		inputDescription: "",
 		inputValue: "",
 		selectedPaymentMethod: "Débito",
-		selectedDate: Date.now()
+		selectedDate: Date.now(),
+		inProgress: false
 	}
 
 	createJob = () => {
+		this.setState({inProgress: true})
 		const baseUrl = 'https://us-central1-labenu-apis.cloudfunctions.net/futureNinjasOne/jobs'
 		const date = new Date(this.state.selectedDate)
 		const body = {
@@ -48,7 +50,7 @@ class Registration extends React.Component {
 			axios.post( baseUrl, body )
 			.then(() => {
 				window.alert("emprego criado com sucesso!")
-				this.setState({ inputTitle: "", inputDescription: "", inputValue: "" })
+				this.setState({ inputTitle: "", inputDescription: "", inputValue: "", inProgress: false })
 			}).catch(error => {
 				console.log(error.message)
 			})
@@ -150,6 +152,7 @@ class Registration extends React.Component {
 				<Button variant="contained" onClick={this.createJob} color="primary">
                     Cadastrar
                 </Button>	
+				{this.state.inProgress ? <LinearProgress /> : null}
 			</FormContainer>
 		)
 	}
