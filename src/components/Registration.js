@@ -34,7 +34,6 @@ class Registration extends React.Component {
 	}
 
 	createJob = () => {
-		this.setState({inProgress: true})
 		const baseUrl = 'https://us-central1-labenu-apis.cloudfunctions.net/futureNinjasOne/jobs'
 		const date = new Date(this.state.selectedDate)
 		const body = {
@@ -47,6 +46,7 @@ class Registration extends React.Component {
 		}
 
 		if ( this.verifyFields(body.title, body.description, body.value) ){
+			this.setState({inProgress: true})
 			axios.post( baseUrl, body )
 			.then(() => {
 				window.alert("emprego criado com sucesso!")
