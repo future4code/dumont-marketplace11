@@ -1,4 +1,7 @@
+import { MenuItem, Select, TextField, Box } from '@material-ui/core';
 import React from 'react';
+import FormControl from '@material-ui/core/FormControl';
+import InputLabel from '@material-ui/core/InputLabel';
 
 class Filter extends React.Component {
     state = {
@@ -150,31 +153,48 @@ class Filter extends React.Component {
 
     render() {
         return (
-            <div>
-                <div>
-                    <input placeholder="Valor mínimo" type="number" min="0"
-                        value={this.state.minValue} onChange={this.onChangeMinInput}
+            <Box>
+                <FormControl variant="outlined">
+                    <TextField 
+                    size="small" 
+                    value={this.state.minValue}  
+                    type="number" 
+                    min="0"
+                    onChange={this.onChangeMinInput} 
+                    label="Valor mínimo" 
+                    variant="outlined" 
                     />
-                    <input placeholder="Valor máximo" type="number" min="0"
-                        value={this.state.maxValue} onChange={this.onChangeMaxInput}
+                    <TextField 
+                    size="small" 
+                    value={this.state.maxValue}  
+                    type="number" 
+                    min="0"
+                    onChange={this.onChangeMaxInput} 
+                    label="Valor máximo" 
+                    variant="outlined" 
                     />
-                    <select value={this.state.sortTitleBy} onChange={this.onChangeSortByTitle}>
-                        <option value="" disabled>Alfabeticamente</option>
-                        <option value="A-Z">A-Z</option>
-                        <option value="Z-A">Z-A</option>
-                    </select>
-                    <select value={this.state.sortPriceBy} onChange={this.onChangeSortByPrice}>
-                        <option value="" disabled>Por preço</option>
-                        <option value="cheapest">Crescente</option>
-                        <option value="priciest">Decrescente</option>
-                    </select>
-                    <select value={this.state.sortDateBy} onChange={this.onChangeSortByDate}>
-                        <option value="" disabled>Por data limite</option>
-                        <option value="newest">Mais próxima</option>
-                        <option value="oldest">Mais longe</option>
-                    </select>
-                </div>
-            </div>
+                    <InputLabel id="ordenar">Ordenar</InputLabel>
+                    <Select 
+                        id="ordenar"
+                        value={this.state.sortTitleBy} 
+                        onChange={this.onChangeSortByTitle}
+                    >   
+                        <MenuItem value="" disabled>Alfabeticamente</MenuItem>
+                        <MenuItem value="A-Z">A-Z</MenuItem>
+                        <MenuItem value="Z-A">Z-A</MenuItem>
+                    </Select>
+                    <Select value={this.state.sortPriceBy} onChange={this.onChangeSortByPrice}>
+                        <MenuItem value="" disabled>Por preço</MenuItem>
+                        <MenuItem value="cheapest">Crescente</MenuItem>
+                        <MenuItem value="priciest">Decrescente</MenuItem>
+                    </Select>
+                    <Select value={this.state.sortDateBy} onChange={this.onChangeSortByDate}>
+                        <MenuItem value="" disabled>Por data limite</MenuItem>
+                        <MenuItem value="newest">Mais próxima</MenuItem>
+                        <MenuItem value="oldest">Mais longe</MenuItem>
+                    </Select>
+                </FormControl>
+            </Box>
         )
     }
 }
