@@ -1,7 +1,7 @@
 ## Future Ninjas
 
 ### Link do Surge
-aqui
+troubled-vessel.surge.sh
 
 ### O que funciona:
 -
