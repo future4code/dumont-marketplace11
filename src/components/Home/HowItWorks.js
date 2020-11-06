@@ -5,9 +5,8 @@ import pick from '../../img/pick.svg'
 import theOne from '../../img/theOne.svg'
 
 const Div = styled.div`
-    background-color: rgb(184, 163, 224);
-    height: 23em;
-    color: #311355;
+    height: 25em;
+    color: #8662d0;
 `
 
 const ContainerElements = styled.div`
