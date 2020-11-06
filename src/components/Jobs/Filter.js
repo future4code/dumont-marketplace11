@@ -118,16 +118,22 @@ class Filter extends React.Component {
     }
 
     onChangeMinInput = (event) => {
-        this.setState({ minValue: event.target.value })
+        this.setState({ minValue: event.target.value }, () => {
+            this.updateCardsArray()
+        })
     }
     onChangeMaxInput = (event) => {
-        this.setState({ maxValue: event.target.value })
+        this.setState({ maxValue: event.target.value }, () => {
+            this.updateCardsArray()
+        })
     }
     onChangeSortByTitle = (event) => {
         this.setState({
             sortTitleBy: event.target.value,
             sortPriceBy: "",
             sortDateBy: ""
+        }, () => {
+            this.updateCardsArray()
         })
     }
     onChangeSortByPrice = (event) => {
@@ -135,6 +141,8 @@ class Filter extends React.Component {
             sortTitleBy: "",
             sortPriceBy: event.target.value,
             sortDateBy: ""
+        }, () => {
+            this.updateCardsArray()
         })
     }
     onChangeSortByDate = (event) => {
@@ -142,6 +150,8 @@ class Filter extends React.Component {
             sortTitleBy: "",
             sortPriceBy: "",
             sortDateBy: event.target.value
+        }, () => {
+            this.updateCardsArray()
         })
     }
 
