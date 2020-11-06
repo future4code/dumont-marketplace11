@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-//import {Button} from '@material-ui/core'
+import {Button} from '@material-ui/core'
 import { createMuiTheme, MuiThemeProvider} from '@material-ui/core'
 
 const myTheme = createMuiTheme({
@@ -33,9 +33,12 @@ class JobCard extends React.Component {
                 <img src="https://picsum.photos/200/200" alt="imagem" />
                 <Tittle>{this.props.title}</Tittle>
                 <p> R${this.props.value},00  | Data: {this.props.dueDate}</p>
-                <button onClick={() => this.props.detailsTeste(this.props.id)} >
+                <MuiThemeProvider theme={myTheme}>
+                <Button onClick={() => this.props.detailsTeste(this.props.id)}
+                 variant="contained" color="primary" >
                     VER MAIS
-                </button>
+                </Button>
+                </MuiThemeProvider>
             </Card>
         )
     }
