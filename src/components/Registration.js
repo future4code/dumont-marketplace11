@@ -25,6 +25,7 @@ const FormContainer = styled.form`
 class Registration extends React.Component {
 
 	state = {
+		inputName: "",
 		inputTitle: "",
 		inputDescription: "",
 		inputValue: "",
@@ -45,34 +46,46 @@ class Registration extends React.Component {
 			taken: false
 		}
 
-		if ( this.verifyFields(body.title, body.description, body.value) ){
+		if ( this.verifyFields(this.state.inputName, body.title, body.description, body.value) ){
 			this.setState({inProgress: true})
 			axios.post( baseUrl, body )
 			.then(() => {
-				window.alert("emprego criado com sucesso!")
-				this.setState({ inputTitle: "", inputDescription: "", inputValue: "", inProgress: false })
+				window.alert(`Obrigada, ${this.state.inputName}, seu serviço foi cadastrado com sucesso <3`)
+				this.setState({ 
+					inputName: "",
+					inputTitle: "", 
+					inputDescription: "", 
+					inputValue: "", 
+					inProgress: false 
+				})
 			}).catch(error => {
 				console.log(error.message)
 			})
 		}
 	}
 
-	verifyFields = ( title, description, value ) => {
-		if ( title !== "" ){ 
-			if ( description !== "" ){
-				if ( value !== "" ){
-					return true
+	verifyFields = ( name, title, description, value ) => {
+		if ( name !== ""){
+			if ( title !== "" ){ 
+				if ( description !== "" ){
+					if ( value !== "" ){
+						return true
+					}else {
+						window.alert("Por favor, informe o valor do serviço")
+					}
 				}else {
-					window.alert("Por favor, informe o valor do serviço")
+					window.alert("Por favor, informe uma descrição do seu serviço")
 				}
-				return true
 			}else {
-				window.alert("Por favor, informe uma descrição do seu serviço")
+				window.alert("Por favor, informe o título do serviço")
 			}
-			return true
 		}else {
-			window.alert("Por favor, informe o título do serviço")
-		}		
+			window.alert("Por favor, informe seu nome")
+		}			
+	}
+
+	onChangeInputName = (event) => {
+		this.setState({ inputName: event.target.value })
 	}
 
 	onChangeInputTitle = (event) => {
@@ -103,6 +116,13 @@ class Registration extends React.Component {
 
 		return (
 			<FormContainer noValidate>
+				<TextField 
+                    size="small" 
+                    value={this.state.inputName}  
+                    onChange={this.onChangeInputName} 
+                    label="Nome" 
+                    variant="outlined" 
+                />
 				<TextField 
                     size="small" 
                     value={this.state.inputTitle}  
