@@ -47,7 +47,7 @@ const Img = styled.img`
     width: 20%;
 `
 const ImgPick = styled.img`
-    width: 30%;
+    width: 17%;
     margin: 0 20px;
 `
 
