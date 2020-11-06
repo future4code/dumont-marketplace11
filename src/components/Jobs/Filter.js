@@ -3,7 +3,7 @@ import React from 'react';
 class Filter extends React.Component {
     state = {
         sortTitleBy: "",
-        sortPriceBy: "priciest",
+        sortPriceBy: "",
         sortDateBy: "",
         minValue: "",
         maxValue: "",
@@ -11,7 +11,7 @@ class Filter extends React.Component {
 
     filterByText = (arrayOfObjects, text) => {
         const filteredArray = arrayOfObjects.filter((object) => {
-            if (object.title.includes(text)) {
+            if (object.title.toLowerCase().includes(text.toLowerCase())) {
                 return true
             } else {
                 return object.description.includes(text)
@@ -130,7 +130,7 @@ class Filter extends React.Component {
     }
 
     render() {
-        if (this.props.allCards !== []) { console.log(this.combineAllFilters(this.props.allCards, "")) }
+        if (this.props.allCards !== []) { console.log(this.combineAllFilters(this.props.allCards, this.props.searchedJob)) }
         return (
             <div>
                 <div>
