@@ -2,6 +2,12 @@ import React, { Component } from 'react'
 import JobsGridCard from './JobsGridCard'
 import axios from 'axios'
 import Filter from './Filter'
+import styled from 'styled-components'
+
+const NotFoundContainer = styled.div`
+  text-align: center;
+  padding: 10vh;
+`
 
 const urlBase = "https://us-central1-labenu-apis.cloudfunctions.net/futureNinjasOne/jobs"
 
@@ -33,10 +39,14 @@ class Jobs extends React.Component {
 
   render() {
     const pickArrayToRender =() => {
-      if (!this.props.searchedJob) { // Se o campo de busca estiver vazio
+      if (!this.props.searchedJob) {
         return <JobsGridCard allCards={this.state.allCards} />
-      } else if (!this.state.filteredCards.length) { // Se buscar por trabalho inexistente
-        return <p>Deu erro, DIANA E NICOLE ARRUMEM AQUI FAÇAM UMA MENSAGEM de erro BONITA (POR FAVOR)</p>
+      } else if (!this.state.filteredCards.length) {
+        return (
+          <NotFoundContainer>
+            <p>Serviço não encontrado!</p>
+          </NotFoundContainer>
+        )
       } else {
         return <JobsGridCard allCards={this.state.filteredCards} />
       }
@@ -50,7 +60,6 @@ class Jobs extends React.Component {
         />
         {pickArrayToRender()}
       </div>
-
     )
   }
 }
