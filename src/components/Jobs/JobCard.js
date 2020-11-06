@@ -17,7 +17,7 @@ const Card = styled.div`
     justify-content: center;
     align-items: center;
     margin: 0;
-    padding: 0;
+    padding: 0;    
 `
 
 const Tittle = styled.h2`
@@ -45,10 +45,3 @@ class JobCard extends React.Component {
 }
 export default JobCard
 
-/* materialUI
-<MuiThemeProvider theme={myTheme}>
-                    <Button onClick= {() => this.props.details(this.props.id)} variant="contained" color="primary">
-                    VER MAIS
-                    </Button>
-                </MuiThemeProvider>
-                */
