@@ -9,7 +9,8 @@ import programmer from "../../img/programmer300.jpg";
 import styled from "styled-components";
 
 const Div = styled.div`
-  padding-bottom: 2em;
+  padding: 4em 2em;
+  background-color:rgb(184, 163, 224, 0.5);
 `
 
 class CarouselFeature extends React.Component {
