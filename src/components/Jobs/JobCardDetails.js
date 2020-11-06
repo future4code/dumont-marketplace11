@@ -1,12 +1,21 @@
 import axios from 'axios'
 import React from 'react'
 import styled from 'styled-components'
+import {Button} from '@material-ui/core'
+import { createMuiTheme, MuiThemeProvider} from '@material-ui/core'
 
+const myTheme = createMuiTheme({
+    palette: {
+        primary: {
+            main: "#8D6AD9"
+        }
+    }
+})
 
 const CardDiv = styled.div`
 position: absolute;
 width: 400px;
-height: 300px;
+height: 310px;
 display: flex;
 flex-direction: column;
 align-items: center; 
@@ -15,7 +24,6 @@ background-color: #9F8FD9;
 border-radius: 10px;
 top: 125px;
 `
-
 const PageDiv = styled.div` 
 position: fixed;
 width: 100vw;
@@ -38,7 +46,6 @@ align-self: start;
 margin-left: 5px;
 `   
 
-
 const urlBase = "https://us-central1-labenu-apis.cloudfunctions.net/futureNinjasOne/jobs"
 
 
@@ -48,24 +55,18 @@ class JobCardDetails extends React.Component {
     }
 
 
-
     componentDidMount () {
         this.getCardDetails(this.props.idProps)
     }
 
     
-
-    getCardDetails = async (id) => {
-        
-        
-        const response = await axios.get(`${urlBase}/${id}`)
-        
-           this.setState({details: response.data})
-           
+    getCardDetails = (id) => {
+        axios.get(`${urlBase}/${id}`)
+        .then((response) => {this.setState({details: response.data})}) 
     }
 
+   
     render () {
-
         return (
             <PageDiv>
               <CardDiv>
@@ -76,6 +77,11 @@ class JobCardDetails extends React.Component {
                     <p> Prazo:{this.state.details.dueDate} </p>
                     <p> Valor: R$ {this.state.details.value},00</p>
                     <p> Forma de pagamento: {this.state.details.paymentMethods} </p>
+                    <MuiThemeProvider theme={myTheme}>
+                        <Button variant="contained" color="primary"  >
+                        CONTRATAR
+                        </Button>
+                    </MuiThemeProvider>
               </CardDiv>
             </PageDiv>
         )
@@ -83,3 +89,5 @@ class JobCardDetails extends React.Component {
 }
 
 export default JobCardDetails 
+
+            
