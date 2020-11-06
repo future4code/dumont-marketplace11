@@ -14,7 +14,7 @@ const Div = styled.div`
 const H1 = styled.h1`
     font-family: nove, sans-serif;
     text-align: end;
-    padding: 50px;
+    padding: 15px 50px;
 `
 const P = styled.p`
     margin: 0 60px;
@@ -33,8 +33,7 @@ class AboutUs extends React.Component {
                     </div>
                     <div>
                     <H1>Quem somos?</H1>
-                    <P>Olá , seja bem vindo a Future Ninjas, nós somos uma plataforma de serviços oferecidos apenas por mulheres. Temos o objetivo de diminuir o  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque vel molestie erat.
-                                Nam luctus ac tellus ut vestibulum. Phasellus lectus libero, congue ac malesuada vitae, pulvinar at velit.</P>
+                    <P>Olá , seja bem vinda a Future Ninjas, somos uma startup de iniciativa de impacto social que foca em disponibilizar serviços oferecidos apenas por mulheres. Temos o objetivo de reduzir o gap de gênero em diversos setores trabalhistas, assim, apresentamos em nossa plataforma apenas profissionais mulheres cis e trans. Nosso time de profissionais recebe um treinamento exclusivo com o intuito de melhorar nossos atendimentos e assim consquistar cada vez mais cliente fiéis. Aqui em nossa StartUp nós também proporcionamos um espaço de acolhimento, auxílio financeiro para curso profissionais e advogados trabalhistas. Nós entendemos que o futuro é para todos, e para alcançar o sussesso de forma justa e igual, só sendo um ninja!  </P>
                     </div>
                 </Div>
            

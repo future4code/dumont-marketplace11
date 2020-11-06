@@ -4,7 +4,7 @@ import instragram from "../img/instagram.svg";
 import logo from "../img/logo.png";
 
 const DivFooter = styled.div`
-  background-color: #404040;
+  background-color: #55545c;
   height: 28em;
   padding: 0 10em;
 
