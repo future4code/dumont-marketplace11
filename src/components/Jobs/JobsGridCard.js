@@ -15,10 +15,14 @@ const Container = styled.div`
 class JobsGridCard extends React.Component {
     state = {
         seeInfo: false,
-        idCard: ""
+        idCard: "",
     }
 
     seeDetails = (id) => {
+<<<<<<< HEAD
+=======
+       
+>>>>>>> ad746fd420af548d58cdc0c7a8d7e92bd12e85e3
         this.setState({
             seeInfo: true,
             idCard: id
@@ -34,8 +38,13 @@ class JobsGridCard extends React.Component {
         const renderSeeDet = this.state.seeInfo ? <JobCardDetails idProps={this.state.idCard} close={this.closeCard} fetchAllCards={this.props.fetchAllCards} /> : null
 
         const renderedJobs = this.props.allCards.map((item) => {
+<<<<<<< HEAD
             return (<JobCard key={item.id} id={item.id} title={item.title}
                 value={item.value} dueDate={item.dueDate} detailsTeste={this.seeDetails}  />)
+=======
+            return (<JobCard key={item.id} id={item.id} title={item.title} 
+                value={item.value} dueDate={item.dueDate}  detailsTeste={this.seeDetails} taken={item.taken}/>)
+>>>>>>> ad746fd420af548d58cdc0c7a8d7e92bd12e85e3
         })
 
         return (

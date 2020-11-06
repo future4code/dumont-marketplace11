@@ -51,7 +51,8 @@ const urlBase = "https://us-central1-labenu-apis.cloudfunctions.net/futureNinjas
 
 class JobCardDetails extends React.Component {
     state = {
-        details: {}
+        details: {},
+        taken: false
     }
 
 
@@ -62,10 +63,20 @@ class JobCardDetails extends React.Component {
     
     getCardDetails = (id) => {
         axios.get(`${urlBase}/${id}`)
-        .then((response) => {this.setState({details: response.data})}) 
+        .then((response) => {
+            this.setState({
+                details: response.data})
+            }) 
     }
 
-   
+    takeJob = (id) => {
+        axios.put(`${urlBase}/${id}/take`)
+        .then((response) => {
+            this.setState({
+              taken:response.data.taken})
+        })
+    }
+
     render () {
         return (
             <PageDiv>
@@ -78,7 +89,13 @@ class JobCardDetails extends React.Component {
                     <p> Valor: R$ {this.state.details.value},00</p>
                     <p> Forma de pagamento: {this.state.details.paymentMethods} </p>
                     <MuiThemeProvider theme={myTheme}>
+<<<<<<< HEAD
                         <Button variant="contained" color="primary" fetchAllCards={this.props.fetchAllCards}  >
+=======
+                        <Button onClick={() => {this.takeJob(this.state.details.id)
+                        this.props.close()
+                        }} variant="contained" color="primary"  >
+>>>>>>> ad746fd420af548d58cdc0c7a8d7e92bd12e85e3
                         CONTRATAR
                         </Button>
                     </MuiThemeProvider>

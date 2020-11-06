@@ -36,7 +36,7 @@ class JobCard extends React.Component {
                 <p> R${this.props.value},00  | Data: {this.props.dueDate}</p>
                 <MuiThemeProvider theme={myTheme}>
                 <Button onClick={() => this.props.detailsTeste(this.props.id)}
-                 variant="contained" color="primary" >
+                 variant="contained" color= {this.props.taken ? "secondary" : "primary"} >
                     VER MAIS
                 </Button>
                 </MuiThemeProvider>
