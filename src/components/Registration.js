@@ -40,7 +40,8 @@ class Registration extends React.Component {
 			description: this.state.inputDescription,
 			value: this.state.inputValue,
 			paymentMethods: [this.state.selectedPaymentMethod],
-			dueDate: date.toLocaleDateString()
+			dueDate: date.toLocaleDateString(),
+			taken: false
 		}
 
 		if ( this.verifyFields(body.title, body.description, body.value) ){
