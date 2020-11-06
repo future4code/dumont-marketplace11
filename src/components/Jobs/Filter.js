@@ -104,9 +104,29 @@ class Filter extends React.Component {
     onChangeMinInput = (event) => {
         this.setState({ minValue: event.target.value })
     }
-
     onChangeMaxInput = (event) => {
         this.setState({ maxValue: event.target.value })
+    }
+    onChangeSortByTitle = (event) => {
+        this.setState({
+            sortTitleBy: event.target.value,
+            sortPriceBy: "",
+            sortDateBy: ""
+        })
+    }
+    onChangeSortByPrice = (event) => {
+        this.setState({
+            sortTitleBy: "",
+            sortPriceBy: event.target.value,
+            sortDateBy: ""
+        })
+    }
+    onChangeSortByDate = (event) => {
+        this.setState({
+            sortTitleBy: "",
+            sortPriceBy: "",
+            sortDateBy: event.target.value
+        })
     }
 
     render() {
@@ -118,8 +138,24 @@ class Filter extends React.Component {
                         value={this.state.minValue} onChange={this.onChangeMinInput}
                     />
                     <input placeholder="Valor máximo" type="number" min="0"
-                        value={this.state.maxValue} onChange={this.onChangeMaxInput}                    
+                        value={this.state.maxValue} onChange={this.onChangeMaxInput}
                     />
+                    <select value={this.state.sortTitleBy} onChange={this.onChangeSortByTitle}>
+                        <option value="" disabled>Alfabeticamente</option>
+                        <option value="A-Z">A-Z</option>
+                        <option value="Z-A">Z-A</option>
+                    </select>
+                    <select value={this.state.sortPriceBy} onChange={this.onChangeSortByPrice}>
+                        <option value="" disabled>Por preço</option>
+                        <option value="cheapest">Crescente</option>
+                        <option value="priciest">Decrescente</option>
+                    </select>
+                    <select value={this.state.sortDateBy} onChange={this.onChangeSortByDate}>
+                        <option value="" disabled>Por data limite</option>
+                        <option value="newest">Mais próxima</option>
+                        <option value="oldest">Mais longe</option>
+
+                    </select>
                 </div>
             </div>
         )
