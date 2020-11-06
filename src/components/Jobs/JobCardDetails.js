@@ -78,7 +78,7 @@ class JobCardDetails extends React.Component {
                     <p> Valor: R$ {this.state.details.value},00</p>
                     <p> Forma de pagamento: {this.state.details.paymentMethods} </p>
                     <MuiThemeProvider theme={myTheme}>
-                        <Button variant="contained" color="primary"  >
+                        <Button variant="contained" color="primary" fetchAllCards={this.props.fetchAllCards}  >
                         CONTRATAR
                         </Button>
                     </MuiThemeProvider>

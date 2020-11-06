@@ -41,7 +41,7 @@ class JobCard extends React.Component {
                 </Button>
                 </MuiThemeProvider>
             </Card>
-        )
+        )        
     }
 }
 export default JobCard
