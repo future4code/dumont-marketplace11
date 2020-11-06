@@ -2,6 +2,18 @@ import React, { Component } from 'react'
 import JobsGridCard from './JobsGridCard'
 import axios from 'axios'
 import Filter from './Filter'
+import styled from 'styled-components'
+
+const NotFoundContainer = styled.div`
+  text-align: center;
+  padding: 10vh;
+`
+const P = styled.p`
+  font-family: nove, sans-serif;
+	color: #8662d0;
+  font-size: 40px;
+
+`
 
 const urlBase = "https://us-central1-labenu-apis.cloudfunctions.net/futureNinjasOne/jobs"
 
@@ -32,6 +44,19 @@ class Jobs extends React.Component {
   }
 
   render() {
+    const pickArrayToRender =() => {
+      if (!this.props.searchedJob) {
+        return <JobsGridCard allCards={this.state.allCards} />
+      } else if (!this.state.filteredCards.length) {
+        return (
+          <NotFoundContainer>
+            <P>Serviço não encontrado!</P>
+          </NotFoundContainer>
+        )
+      } else {
+        return <JobsGridCard allCards={this.state.filteredCards} />
+      }
+    }
     return (
       <div>
         <Filter
@@ -39,11 +64,8 @@ class Jobs extends React.Component {
           searchedJob={this.props.searchedJob}
           fetchFilteredArray={this.fetchFilteredArray}
         />
-        <JobsGridCard
-          allCards={this.state.filteredCards.length === 0 ? this.state.allCards : this.state.filteredCards} 
-        />
+        {pickArrayToRender()}
       </div>
-
     )
   }
 }

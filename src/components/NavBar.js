@@ -1,16 +1,30 @@
 import React from "react";
 import logo from "../img/logo.png";
 import styled from "styled-components";
+import { createMuiTheme, MuiThemeProvider} from '@material-ui/core'
 import { TextField, Button } from "@material-ui/core";
 import lupa from "../img/lupa.svg";
+import home from "../img/casa.svg";
+import homeHover from "../img/home.svg";
+
+const myTheme = createMuiTheme({
+  palette: {
+      primary: {
+          main: "#8D6AD9"
+      }
+  },
+})
 
 const NavHeader = styled.header`
   display: flex;
+  padding-right: 20px;
   align-items: center;
-  /* justify-content: space-between; */
+  justify-content: space-between;
   background-color: rgb(184, 163, 224);
+  
 `;
 const Section = styled.div`
+  padding-left: 50px;
   width: 30vw;
   display: flex;
 `;
@@ -23,17 +37,14 @@ const Lupa = styled.img`
   width: 13%;
   padding-left: 10px;
 `;
-// const MyButton = styled(Button)({
-//     border: 0,
-//     borderRadius: 3,
-//     boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
-//     color: 'white',
-//     height: 48,
-//     padding: '0 30px',
-//     typography: {
-//         fontWeight: 700,
-//     }
-//   });
+
+const Home = styled.img`
+ width: 3%;
+ cursor: pointer;
+ &:hover{
+  
+ }
+`
 
 class NavBar extends React.Component {
   scrollToAbout = () => {
@@ -60,9 +71,7 @@ class NavBar extends React.Component {
     );
 
     const homeButton = (
-      <Button variant="contained" onClick={this.props.goToHomePage}>
-        Home
-      </Button>
+      <Home src={home} onClick={this.props.goToHomePage}/>
     );
 
     const buttonsHome = (
@@ -77,6 +86,7 @@ class NavBar extends React.Component {
     );
 
     return (
+      <MuiThemeProvider theme={myTheme}>
       <NavHeader>
         <Logo src={logo} alt={"logo da FutureNinja"} />
         {this.props.currentPage !== "home" ? homeButton : buttonsHome}
@@ -95,6 +105,8 @@ class NavBar extends React.Component {
             : "Ver serviços disponíveis"}
         </Button>
       </NavHeader>
+      </MuiThemeProvider>
+
     );
   }
 }
