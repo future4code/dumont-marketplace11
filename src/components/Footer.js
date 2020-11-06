@@ -109,7 +109,7 @@ class Footer extends React.Component {
               </p>
           </section>
         </DivText>
-        <Copyright>Copyright © Team11 2020</Copyright>
+        <Copyright>Copyright © Squad11 2020</Copyright>
       </DivFooter>
     );
   }
