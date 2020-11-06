@@ -43,12 +43,33 @@ class Registration extends React.Component {
 			dueDate: date.toLocaleDateString()
 		}
 
-		axios.post( baseUrl, body )
-		.then(() => {
-			window.alert("emprego criado com sucesso!")
-		}).catch(error => {
-			console.log(error.message)
-		})
+		if ( this.verifyFields(body.title, body.description, body.value) ){
+			axios.post( baseUrl, body )
+			.then(() => {
+				window.alert("emprego criado com sucesso!")
+				this.setState({ inputTitle: "", inputDescription: "", inputValue: "" })
+			}).catch(error => {
+				console.log(error.message)
+			})
+		}
+	}
+
+	verifyFields = ( title, description, value ) => {
+		if ( title !== "" ){ 
+			if ( description !== "" ){
+				if ( value !== "" ){
+					return true
+				}else {
+					window.alert("Por favor, informe o valor do serviço")
+				}
+				return true
+			}else {
+				window.alert("Por favor, informe uma descrição do seu serviço")
+			}
+			return true
+		}else {
+			window.alert("Por favor, informe o título do serviço")
+		}		
 	}
 
 	onChangeInputTitle = (event) => {
@@ -72,16 +93,17 @@ class Registration extends React.Component {
 	};
 
 	render(){
-
 		const paymentMethods = ["Débito", "Crédito", "Paypal", "Picpay"]
+		const paymentMethodsList = paymentMethods.map((paymentMethod, id) => (
+			<MenuItem key={id} value={paymentMethod}>{paymentMethod}</MenuItem>
+		))
 
 		return (
 			<FormContainer noValidate>
 				<TextField 
                     size="small" 
                     value={this.state.inputTitle}  
-                    onChange={this.onChangeInputTitle}
-                    // id="outlined-basic" 
+                    onChange={this.onChangeInputTitle} 
                     label="Título" 
                     variant="outlined" 
                 />
@@ -89,7 +111,6 @@ class Registration extends React.Component {
 					size="small" 
 					value={this.state.inputDescription}  
                     onChange={this.onChangeInputDescription}
-                    // id="outlined-basic" 
                     label="Descrição" 
                     variant="outlined" 
                 />
@@ -97,7 +118,6 @@ class Registration extends React.Component {
 					size="small" 
 					value={this.state.inputValue}  
                     onChange={this.onChangeInputValue}
-                    // id="outlined-basic" 
                     label="Valor" 
                     variant="outlined" 
                 />
@@ -111,16 +131,14 @@ class Registration extends React.Component {
 						onChange={this.handlePaymentMethods}
 						label="Forma de Pagamento"
 					>
-					{paymentMethods.map((paymentMethod, id) => (
-						<MenuItem key={id} value={paymentMethod}>{paymentMethod}</MenuItem>
-						))}	
+						{paymentMethodsList}	
 					</Select>
 				</FormControl>
 				<MuiPickersUtilsProvider utils={DateFnsUtils}>
 					<KeyboardDatePicker
 						disableToolbar
 						variant="inline"
-						format="MM/dd/yyyy"
+						format="dd/MM/yyyy"
 						margin="normal"
 						id="date-picker-inline"
 						label="Prazo de entrega do serviço"
