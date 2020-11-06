@@ -19,39 +19,38 @@ class JobsGridCard extends React.Component {
     seeDetails = (id) => {
         console.log("detalhess")
         this.setState({
-          seeInfo: true,
-          idCard: id
+            seeInfo: true,
+            idCard: id
         })
     }
 
-   closeCard = () => {
-       this.setState({seeInfo: false})
-   }
+    closeCard = () => {
+        this.setState({ seeInfo: false })
+    }
 
-    render(){
-       
-       const renderSeeDet = this.state.seeInfo ? <JobCardDetails idProps = {this.state.idCard} close= {this.closeCard} /> : null
+    render() {
 
+        const renderSeeDet = this.state.seeInfo ? <JobCardDetails idProps={this.state.idCard} close={this.closeCard} /> : null
 
         const renderedJobs = this.props.allCards.map((item) => {
-            return (<JobCard key={item.id} id={item.id} title={item.title} 
-                value={item.value} dueDate={item.dueDate}  detailsTeste={this.seeDetails}/>)
+            return (<JobCard key={item.id} id={item.id} title={item.title}
+                value={item.value} dueDate={item.dueDate} detailsTeste={this.seeDetails} />)
         })
 
-		return (
-            
-			<Container>
+        return (
+
+            <Container>
                 {renderedJobs}
                 {renderSeeDet}
             </Container>
 
-            
-                
-            
 
-            
-		)
-	}
+
+
+
+
+        )
+    }
 }
 
 export default JobsGridCard

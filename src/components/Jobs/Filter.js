@@ -10,28 +10,21 @@ class Filter extends React.Component {
     }
 
     componentDidUpdate = (prevProps) => {
-        console.log("props no update", this.props.searchedJob)
         if (prevProps.allCards === [] || prevProps.searchedJob !== this.props.searchedJob) {
-            console.log("dentro do if do didUpdate")
             this.updateCardsArray(this.props.searchedJob)
         }
     }
 
     updateCardsArray = (text) => {
         const fullyFilteredArray = this.combineAllFilters(this.props.allCards, text)
-        console.log(fullyFilteredArray)
         this.props.fetchFilteredArray(fullyFilteredArray)
     }
 
     filterByText = (arrayOfObjects, text) => {
-        console.log("filtro por texto")
         const filteredArray = arrayOfObjects.filter((object) => {
-            if (object.title.toLowerCase().includes(text.toLowerCase())) {
-                return true
-            } else {
-                return object.description.includes(text)
-            }
+            return object.title.toLowerCase().includes(text.toLowerCase())
         })
+
         return filteredArray
     }
 
@@ -110,9 +103,10 @@ class Filter extends React.Component {
         const filteredArray = this.filterByValue(
             this.filterByText(arrayOfObjects, text)
         )
-        console.log(filteredArray)
-
+        
         const sortedAndFilteredArray = this.sortTitleAlphabetically(this.sortByPrice(this.sortByDueDate(filteredArray)))
+
+        
         return sortedAndFilteredArray
     }
 
