@@ -7,19 +7,35 @@ import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select'
 import styled from 'styled-components';
 import 'date-fns';
+import { createMuiTheme, MuiThemeProvider} from '@material-ui/core'
 import DateFnsUtils from '@date-io/date-fns';
 import {
   MuiPickersUtilsProvider,
   KeyboardDatePicker
 } from '@material-ui/pickers';
 
+const myTheme = createMuiTheme({
+	palette: {
+		primary: {
+			main: "#8D6AD9"
+		}
+	},
+  })
+
 const FormContainer = styled.form`
 	padding: 20px;
 	margin: auto;
+	margin-bottom: 3em;
 	display: flex;
 	flex-direction: column;
 	gap: 10px;
 	width: 30vw;
+`
+const H1 = styled.h1`
+	margin: 1.5em 0 0.5em 0;
+    font-family: nove, sans-serif;
+	color: #8662d0;
+    text-align: center; 
 `
 
 class Registration extends React.Component {
@@ -115,6 +131,8 @@ class Registration extends React.Component {
 		))
 
 		return (
+			<MuiThemeProvider theme={myTheme}>
+				<H1>Seja um ninja!</H1>
 			<FormContainer noValidate>
 				<TextField 
                     size="small" 
@@ -174,6 +192,7 @@ class Registration extends React.Component {
                 </Button>	
 				{this.state.inProgress ? <LinearProgress /> : null}
 			</FormContainer>
+			</MuiThemeProvider>
 		)
 	}
 }

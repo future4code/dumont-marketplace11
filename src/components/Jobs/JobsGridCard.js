@@ -8,6 +8,7 @@ const Container = styled.div`
     grid-template-columns: 1fr 1fr 1fr 1fr;
     grid-template-rows: 1fr 1fr 1fr;
     grid-gap: 1em;
+    margin: 3em 0;
 `
 
 class JobsGridCard extends React.Component {
