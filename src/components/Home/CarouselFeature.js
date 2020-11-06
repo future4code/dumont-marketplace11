@@ -6,6 +6,12 @@ import Col from "react-bootstrap/Col";
 import mechanic from "../../img/mechanic.jpg";
 import personal from "../../img/personal.jpg";
 import programmer from "../../img/programmer.jpg";
+import slogan from '../../img/slogan.png';
+import styled from 'styled-components'
+
+const Slogan = styled.img`
+  width: 100%;
+`
 
 class CarouselFeature extends React.Component {
   render() {
@@ -14,7 +20,7 @@ class CarouselFeature extends React.Component {
         <Row className="justify-content-center">
           <Col md="5">
             <div>
-              <p>O talento certo, no momento certo.</p>
+              <Slogan src={slogan}/>
             </div>
           </Col>
           <Col md="5">

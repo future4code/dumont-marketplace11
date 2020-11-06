@@ -1,5 +1,5 @@
 import React from 'react';
-import logo from '../img/logo.png';
+import logo from '../img/logo.svg';
 import styled from 'styled-components';
 import { TextField, Button } from '@material-ui/core';
 
