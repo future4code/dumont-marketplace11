@@ -1,6 +1,6 @@
 import React from 'react';
 import axios from 'axios';
-import { TextField, Button } from '@material-ui/core';
+import { TextField, Button, LinearProgress } from '@material-ui/core';
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
@@ -25,11 +25,13 @@ const FormContainer = styled.form`
 class Registration extends React.Component {
 
 	state = {
+		inputName: "",
 		inputTitle: "",
 		inputDescription: "",
 		inputValue: "",
 		selectedPaymentMethod: "Débito",
-		selectedDate: Date.now()
+		selectedDate: Date.now(),
+		inProgress: false
 	}
 
 	createJob = () => {
@@ -40,15 +42,50 @@ class Registration extends React.Component {
 			description: this.state.inputDescription,
 			value: this.state.inputValue,
 			paymentMethods: [this.state.selectedPaymentMethod],
-			dueDate: date.toLocaleDateString()
+			dueDate: date.toLocaleDateString(),
+			taken: false
 		}
 
-		axios.post( baseUrl, body )
-		.then(() => {
-			window.alert("emprego criado com sucesso!")
-		}).catch(error => {
-			console.log(error.message)
-		})
+		if ( this.verifyFields(this.state.inputName, body.title, body.description, body.value) ){
+			this.setState({inProgress: true})
+			axios.post( baseUrl, body )
+			.then(() => {
+				window.alert(`Obrigada, ${this.state.inputName}, seu serviço foi cadastrado com sucesso <3`)
+				this.setState({ 
+					inputName: "",
+					inputTitle: "", 
+					inputDescription: "", 
+					inputValue: "", 
+					inProgress: false 
+				})
+			}).catch(error => {
+				console.log(error.message)
+			})
+		}
+	}
+
+	verifyFields = ( name, title, description, value ) => {
+		if ( name !== ""){
+			if ( title !== "" ){ 
+				if ( description !== "" ){
+					if ( value !== "" ){
+						return true
+					}else {
+						window.alert("Por favor, informe o valor do serviço")
+					}
+				}else {
+					window.alert("Por favor, informe uma descrição do seu serviço")
+				}
+			}else {
+				window.alert("Por favor, informe o título do serviço")
+			}
+		}else {
+			window.alert("Por favor, informe seu nome")
+		}			
+	}
+
+	onChangeInputName = (event) => {
+		this.setState({ inputName: event.target.value })
 	}
 
 	onChangeInputTitle = (event) => {
@@ -72,16 +109,24 @@ class Registration extends React.Component {
 	};
 
 	render(){
-
 		const paymentMethods = ["Débito", "Crédito", "Paypal", "Picpay"]
+		const paymentMethodsList = paymentMethods.map((paymentMethod, id) => (
+			<MenuItem key={id} value={paymentMethod}>{paymentMethod}</MenuItem>
+		))
 
 		return (
 			<FormContainer noValidate>
 				<TextField 
                     size="small" 
+                    value={this.state.inputName}  
+                    onChange={this.onChangeInputName} 
+                    label="Nome" 
+                    variant="outlined" 
+                />
+				<TextField 
+                    size="small" 
                     value={this.state.inputTitle}  
-                    onChange={this.onChangeInputTitle}
-                    // id="outlined-basic" 
+                    onChange={this.onChangeInputTitle} 
                     label="Título" 
                     variant="outlined" 
                 />
@@ -89,7 +134,6 @@ class Registration extends React.Component {
 					size="small" 
 					value={this.state.inputDescription}  
                     onChange={this.onChangeInputDescription}
-                    // id="outlined-basic" 
                     label="Descrição" 
                     variant="outlined" 
                 />
@@ -97,7 +141,6 @@ class Registration extends React.Component {
 					size="small" 
 					value={this.state.inputValue}  
                     onChange={this.onChangeInputValue}
-                    // id="outlined-basic" 
                     label="Valor" 
                     variant="outlined" 
                 />
@@ -111,16 +154,14 @@ class Registration extends React.Component {
 						onChange={this.handlePaymentMethods}
 						label="Forma de Pagamento"
 					>
-					{paymentMethods.map((paymentMethod, id) => (
-						<MenuItem key={id} value={paymentMethod}>{paymentMethod}</MenuItem>
-						))}	
+						{paymentMethodsList}	
 					</Select>
 				</FormControl>
 				<MuiPickersUtilsProvider utils={DateFnsUtils}>
 					<KeyboardDatePicker
 						disableToolbar
 						variant="inline"
-						format="MM/dd/yyyy"
+						format="dd/MM/yyyy"
 						margin="normal"
 						id="date-picker-inline"
 						label="Prazo de entrega do serviço"
@@ -131,6 +172,7 @@ class Registration extends React.Component {
 				<Button variant="contained" onClick={this.createJob} color="primary">
                     Cadastrar
                 </Button>	
+				{this.state.inProgress ? <LinearProgress /> : null}
 			</FormContainer>
 		)
 	}
