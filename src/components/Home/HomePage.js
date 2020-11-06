@@ -12,8 +12,8 @@ class HomePage extends React.Component {
 			<div>
                 <CategoryCard goToJobViewPage={this.props.goToJobViewPage}/>
 				<CarouselFeature />
-				<HowItWorks />
 				<AboutUs />
+				<HowItWorks />
             </div>
 		)
 	}

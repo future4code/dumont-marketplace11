@@ -50,6 +50,14 @@ const Copyright = styled.p`
   font-weight: bold;
   padding-top: 20px;
 `
+const A = styled.a`
+  text-decoration: none;
+  color: #222222;
+  &:hover{
+    text-decoration: none;
+    color: #8662d0;
+  }
+`
 
 class Footer extends React.Component {
   render() {
@@ -96,8 +104,8 @@ class Footer extends React.Component {
           <section>
             <P>Desenvolvedores Ninjas:</P>
               <p>
-                Aline Vignoli <br /> Bianca Mendes <br /> Bruno Mugnol
-              <br /> Diana Monteiro <br /> Nicole Zolnier
+                <A href="https://github.com/nyhvignoli" target="_blank">Aline Vignoli</A><br /> <A href="https://github.com/b-bianca" target="_blank">Bianca Mendes</A><br /> <A href="https://github.com/B-Mugnol" target="_blank">Bruno Mugnol</A>
+              <br /> <A href="https://github.com/DiaMont30" target="_blank">Diana Monteiro</A> <br /> <A href="https://github.com/nizolnier" target="_blank">Nicole Zolnier</A>
               </p>
           </section>
         </DivText>
