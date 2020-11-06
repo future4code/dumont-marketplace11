@@ -7,11 +7,12 @@ const NavHeader = styled.header`
     display: flex;
     align-items: center;
     justify-content: space-between;
+    background-color:rgb(184, 163, 224);
 `
 
 const Logo = styled.img`
     align-self: flex-start;
-    width: 8vw;
+    width: 10%;
 `
 
 class NavBar extends React.Component {

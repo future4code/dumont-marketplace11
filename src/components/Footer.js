@@ -1,50 +1,107 @@
 import React from "react";
-import styled from 'styled-components';
+import styled from "styled-components";
+import instragram from "../img/instagram.svg";
+import logo from "../img/logo.png";
 
 const DivFooter = styled.div`
-	text-align: center;
-	background-color: #404040;
-	padding: 50px 0;
-`
+  background-color: #404040;
+  height: 28em;
+  padding: 0 10em;
+
+`;
+const DivImg = styled.div`
+  display: flex;
+  align-items: center;
+  padding: 25px 0 20px 0;
+`;
+
+const DivText = styled.div`
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  padding: 20px 0 10px 0;
+  border: 1px solid black;
+  border-left: none;
+  border-right: none;
+`;
+
 const Img = styled.img`
-	width: 4%;
+  width: 50%;
+`;
+
+const ImgLogo = styled.img`
+  width: 30%;
+`;
+
+const SectionMedias = styled.section`
+  display: flex;
+`;
+
+const SectionLogo = styled.section`
+  display: flex;
+  justify-content: flex-end;
+`;
+
+const P = styled.p`
+ font-weight: bold;
 `
-const SocialMedias = styled.a`
-	margin: 20px;
+const Copyright = styled.p`
+  text-align: center;
+  font-weight: bold;
+  padding-top: 20px;
 `
 
 class Footer extends React.Component {
   render() {
     return (
       <DivFooter>
+        <DivImg>
+          <SectionMedias>
+            <a href="https://www.instagram.com/" target="_blank">
+              <Img src={instragram} alt="Logotipo instagram" />
+            </a>
+            <a href="https://facebook.com/" target="_blank">
+              <Img
+                src="https://www.flaticon.com/svg/static/icons/svg/179/179319.svg"
+                alt="Logotipo Facebook"
+              />
+            </a>
+            <a href="https://twitter.com/login?lang=pt" target="_blank">
+              <Img
+                src="https://www.flaticon.com/svg/static/icons/svg/179/179342.svg"
+                alt="Logotipo Twitter"
+              />
+            </a>
+            <a href="https://www.linkedin.com/" target="_blank">
+              <Img
+                src="https://www.flaticon.com/svg/static/icons/svg/179/179330.svg"
+                alt="Logotipo Linkedin"
+              />
+            </a>
+          </SectionMedias>
+          <SectionLogo>
+            <ImgLogo src={logo} />
+          </SectionLogo>
+        </DivImg>
+
+        <DivText>
           <section>
-              <SocialMedias href="https://www.instagram.com/" target="_blank">
-                <Img src="https://www.flaticon.com/svg/static/icons/svg/1384/1384015.svg" alt="Logotipo instagram" />
-              </SocialMedias>
-              <SocialMedias href="https://www.whatsapp.com/?lang=pt_br" target="_blank">
-                <Img src="https://www.flaticon.com/svg/static/icons/svg/1384/1384007.svg" alt="Logotipo Whatsapp" />
-              </SocialMedias>
-              <SocialMedias href="https://facebook.com/" target="_blank">
-                <Img src="https://www.flaticon.com/svg/static/icons/svg/1384/1384005.svg" alt="Logotipo Facebook" />
-              </SocialMedias>
-              <SocialMedias href="https://twitter.com/login?lang=pt" target="_blank">
-                <Img src="https://www.flaticon.com/svg/static/icons/svg/1384/1384017.svg" alt="Logotipo Twitter" />
-              </SocialMedias>
-              <SocialMedias href="https://www.linkedin.com/" target="_blank">
-                <Img src="https://www.flaticon.com/svg/static/icons/svg/1384/1384014.svg" alt="Logotipo Linkedin" />
-              </SocialMedias>
+            <P>Atendimento: </P>
+            <p>atendimento@futureninjas.com </p>
+            
+            <P>Sugestões: </P>
+            <p>sugestoes@futureninjas.com</p>
           </section>
-        <section>
-          <p>Atendimento: atendimento@futureninjas.com </p>
-          <p>Sugestões: sugestoes@futureninjas.com</p>
-        </section>
-        <section>
-          <a href="https://github.com/" target="_blank">
-            <small>
-              <b>Copyright © 2020</b>
-            </small>
-          </a>
-        </section>
+
+          <section>
+            <P>Desenvolvedores Ninjas:</P>
+              <p>
+                Aline Vignoli <br /> Bianca Mendes <br /> Bruno Mugnol
+              <br /> Diana Monteiro <br /> Nicole Zolnier
+              </p>
+          </section>
+        </DivText>
+        <Copyright>Copyright © Team11 2020</Copyright>
       </DivFooter>
     );
   }
