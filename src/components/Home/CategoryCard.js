@@ -27,7 +27,7 @@ const Div = styled.div`
 `
 
 const Title = styled.p`
-    font-size: 0.8rem;
+    font-size: 0.7rem;
     text-align: center;
 `
 
