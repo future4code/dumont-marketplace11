@@ -54,7 +54,7 @@ class Jobs extends React.Component {
           </NotFoundContainer>
         )
       } else {
-        return <JobsGridCard allCards={this.state.filteredCards} />
+        return <JobsGridCard allCards={this.state.filteredCards} fetchAllCards={this.fetchAllCards} />
       }
     }
     

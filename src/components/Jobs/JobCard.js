@@ -28,7 +28,7 @@ const Tittle = styled.h3`
 class JobCard extends React.Component {
 
     render() {
-        
+
         return (
             <Card>
                 <img src="https://picsum.photos/200/200" alt="imagem" />
@@ -36,13 +36,16 @@ class JobCard extends React.Component {
                 <p> R${this.props.value},00  | Data: {this.props.dueDate}</p>
                 <MuiThemeProvider theme={myTheme}>
                 <Button onClick={() => this.props.detailsTeste(this.props.id)}
-                 variant="contained" color= {this.props.taken ? "secondary" : "primary"} >
-                    VER MAIS
+                    variant="contained" color= "primary">
+                      {this.props.taken === false ? "VER MAIS" : "CONTRATADO"}
                 </Button>
                 </MuiThemeProvider>
+                
             </Card>
-        )
+        )        
     }
 }
 export default JobCard
+
+
 

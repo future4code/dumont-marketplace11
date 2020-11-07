@@ -1,7 +1,8 @@
-import { MenuItem, Select, TextField, Box } from '@material-ui/core';
+import { MenuItem, Select, TextField } from '@material-ui/core';
 import React from 'react';
 import FormControl from '@material-ui/core/FormControl';
 import InputLabel from '@material-ui/core/InputLabel';
+
 
 class Filter extends React.Component {
     state = {
@@ -188,16 +189,18 @@ class Filter extends React.Component {
 
     render() {
         return (
-            <div>
-                <FormControl variant="outlined">
-                    <TextField
-                        size="small"
-                        value={this.state.minValue}
-                        type="number"
-                        min="0"
-                        onChange={this.onChangeMinInput}
-                        label="Valor mínimo"
-                        variant="outlined"
+<div>
+
+            <FormControl style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-around', alignItems: 'center' }} variant="outlined">
+                    <TextField 
+                    size="small" 
+                    value={this.state.minValue}  
+                    type="number" 
+                    min="0"
+                    onChange={this.onChangeMinInput} 
+                    label="Valor mínimo" 
+                    variant="outlined" 
+
                     />
                 </FormControl>
 
@@ -246,9 +249,12 @@ class Filter extends React.Component {
                         <MenuItem value="oldest">Mais longe</MenuItem>
                     </Select>
                 </FormControl>
+
             </div>
+
         )
     }
 }
 
 export default Filter
+
