@@ -2,7 +2,20 @@ import { MenuItem, Select, TextField } from '@material-ui/core';
 import React from 'react';
 import FormControl from '@material-ui/core/FormControl';
 import InputLabel from '@material-ui/core/InputLabel';
+import styled from "styled-components";
 
+const Div = styled.div`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 2em;
+`
+const P = styled.p`
+    font-family: nove, sans-serif;
+	color: #8662d0;
+    font-size: 30px;
+    margin: 10px 20px 10px 10px;
+`
 
 class Filter extends React.Component {
     state = {
@@ -189,11 +202,11 @@ class Filter extends React.Component {
 
     render() {
         return (
-<div>
-
-            <FormControl style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-around', alignItems: 'center' }} variant="outlined">
+            <Div>
+                <P>Filtros:</P>
+                <FormControl variant="outlined">
                     <TextField 
-                    size="small" 
+                    size="medium" 
                     value={this.state.minValue}  
                     type="number" 
                     min="0"
@@ -206,7 +219,7 @@ class Filter extends React.Component {
 
                 <FormControl variant="outlined">
                     <TextField
-                        size="small"
+                        size="medium"
                         value={this.state.maxValue}
                         type="number"
                         min="0"
@@ -218,11 +231,13 @@ class Filter extends React.Component {
 
                 <FormControl variant="outlined">
                     <Select
+                        displayEmpty
                         id="ordenar"
                         value={this.state.sortTitleBy}
                         onChange={this.onChangeSortByTitle}
+                    
                     >
-                        <MenuItem value="" disabled>Alfabeticamente</MenuItem>
+                        <MenuItem value="" disabled>Ordem Alfabetica</MenuItem>
                         <MenuItem value="A-Z">A-Z</MenuItem>
                         <MenuItem value="Z-A">Z-A</MenuItem>
                     </Select>
@@ -230,10 +245,11 @@ class Filter extends React.Component {
 
                 <FormControl variant="outlined">
                     <Select
+                        displayEmpty
                         value={this.state.sortPriceBy}
                         onChange={this.onChangeSortByPrice}>
 
-                        <MenuItem value="" disabled>Por preço</MenuItem>
+                        <MenuItem value="" disabled>Ordenar por preço</MenuItem>
                         <MenuItem value="cheapest">Crescente</MenuItem>
                         <MenuItem value="priciest">Decrescente</MenuItem>
                     </Select>
@@ -241,16 +257,16 @@ class Filter extends React.Component {
 
                 <FormControl variant="outlined">
                     <Select
+                        displayEmpty
                         value={this.state.sortDateBy}
                         onChange={this.onChangeSortByDate}>
 
-                        <MenuItem value="" disabled>Por data limite</MenuItem>
+                        <MenuItem value="" disabled>Ordenar por data</MenuItem>
                         <MenuItem value="newest">Mais próxima</MenuItem>
-                        <MenuItem value="oldest">Mais longe</MenuItem>
+                        <MenuItem value="oldest">Mais distante</MenuItem>
                     </Select>
                 </FormControl>
-
-            </div>
+            </Div>
 
         )
     }
