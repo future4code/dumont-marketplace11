@@ -15,7 +15,7 @@ const myTheme = createMuiTheme({
 const CardDiv = styled.div`
 position: absolute;
 width: 400px;
-height: 310px;
+height: 350px;
 display: flex;
 flex-direction: column;
 align-items: center; 
@@ -63,10 +63,7 @@ class JobCardDetails extends React.Component {
     
     getCardDetails = (id) => {
         axios.get(`${urlBase}/${id}`)
-        .then((response) => {
-            this.setState({
-                details: response.data})
-            }) 
+        .then((response) => {this.setState({details: response.data})}) 
     }
 
     takeJob = (id) => {
@@ -76,7 +73,7 @@ class JobCardDetails extends React.Component {
               taken:response.data.taken})
         })
     }
-
+   
     render () {
         return (
             <PageDiv>
@@ -89,8 +86,10 @@ class JobCardDetails extends React.Component {
                     <p> Valor: R$ {this.state.details.value},00</p>
                     <p> Forma de pagamento: {this.state.details.paymentMethods} </p>
                     <MuiThemeProvider theme={myTheme}>
-                        <Button onClick={() => {this.takeJob(this.state.details.id)
-                        this.props.close()
+                        <Button onClick={() => {
+                          this.takeJob(this.state.details.id)
+                          this.props.close()
+                          this.props.fetchAllCards()
                         }} variant="contained" color="primary"  >
                         CONTRATAR
                         </Button>
