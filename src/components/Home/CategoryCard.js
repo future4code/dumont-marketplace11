@@ -10,29 +10,65 @@ import teaching from '../../img/categories/teaching.svg';
 import refurbishing from '../../img/categories/refurbishing.svg';
 
 const Img = styled.img`
-    width: 5%;
-    &:hover {
-        cursor: pointer;
-    }
+    width: 50%;
 `
 const DivDetails = styled.div`
     display: flex;
     justify-content: space-between;
-    margin: 30px 60px;
+`
+
+const Div = styled.div`
+    text-align: center;
+    padding: 15px 10px;
+    cursor: pointer;
+    &:hover {
+        background-color: #CFCFCF;
+    }
+`
+
+const Title = styled.p`
+    font-size: 0.8rem;
+    text-align: center;
 `
 
 class JobCardDetails extends React.Component {
     render(){
         return(
             <DivDetails>
-               <Img onClick={this.props.goToJobViewPage} src={domesticService}/>
-               <Img onClick={this.props.goToJobViewPage} src={wellBeing}/>
-               <Img onClick={this.props.goToJobViewPage} src={programming}/>
-               <Img onClick={this.props.goToJobViewPage} src={mechanic}/>
-               <Img onClick={this.props.goToJobViewPage} src={refurbishing}/>
-               <Img onClick={this.props.goToJobViewPage} src={gardening}/>
-               <Img onClick={this.props.goToJobViewPage} src={tech}/>
-               <Img onClick={this.props.goToJobViewPage} src={teaching}/>
+                <Div>
+                    <Img onClick={this.props.goToJobViewPage} src={domesticService}/>
+                    <Title>SERVIÇOS DOMÉSTICOS</Title>
+                </Div>
+               <Div>
+                    <Img onClick={this.props.goToJobViewPage} src={wellBeing}/>
+                    <Title>SAÚDE E BEM-ESTAR</Title>
+               </Div>
+               <Div>
+                    <Img onClick={this.props.goToJobViewPage} src={programming}/>
+                    <Title>TECNOLOGIA E DESIGN</Title>
+               </Div>
+               <Div>
+                    <Img onClick={this.props.goToJobViewPage} src={mechanic}/>
+                    <Title>MECÂNICA </Title>
+               </Div>
+               <Div>
+                    <Img onClick={this.props.goToJobViewPage} src={refurbishing}/>
+                    <Title>CONSERTOS E REFORMAS</Title>
+               </Div>
+               <Div>
+                    <Img onClick={this.props.goToJobViewPage} src={gardening}/>
+                    <Title>JARDINAGEM</Title>
+               </Div>
+               <Div>
+                    <Img onClick={this.props.goToJobViewPage} src={tech}/>
+                    <Title>ASSISTÊNCIA TÉCNICA</Title>
+               </Div>
+               <Div>
+                    <Img onClick={this.props.goToJobViewPage} src={teaching}/>
+                    <Title>AULAS</Title>
+               </Div>
+               
+               
             </DivDetails>
         )
     }
