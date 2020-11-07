@@ -8,8 +8,10 @@ const Container = styled.div`
     grid-template-columns: 1fr 1fr 1fr 1fr;
     grid-template-rows: 1fr 1fr 1fr;
     grid-gap: 1em;
-    margin: 3em 0;
+    row-gap: 2em;
+    margin: 1em;
     align-items: center;
+    justify-content: center;
 `
 
 class JobsGridCard extends React.Component {
@@ -44,10 +46,6 @@ class JobsGridCard extends React.Component {
                 {renderedJobs}
                 {renderSeeDet}
             </Container>
-
-
-
-
 
 
         )
