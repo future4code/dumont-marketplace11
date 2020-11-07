@@ -1,7 +1,8 @@
 import React from 'react'
 import styled from 'styled-components'
-import {Button} from '@material-ui/core'
-import { createMuiTheme, MuiThemeProvider} from '@material-ui/core'
+import { Button } from '@material-ui/core'
+import { createMuiTheme, MuiThemeProvider } from '@material-ui/core'
+import Card from 'react-bootstrap/Card'
 
 const myTheme = createMuiTheme({
     palette: {
@@ -11,18 +12,10 @@ const myTheme = createMuiTheme({
     }
 })
 
-const Card = styled.div`
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    margin-bottom: 2em;
-    padding: 0;    
-`
-
-const Tittle = styled.h3`
-    text-align: center;
-    padding: 30px;
+const Container = styled.div`
+display: flex;
+justify-content: center;
+align-items: center;   
 `
 
 class JobCard extends React.Component {
@@ -30,19 +23,25 @@ class JobCard extends React.Component {
     render() {
 
         return (
-            <Card>
-                <img src="https://picsum.photos/200/200" alt="imagem" />
-                <Tittle>{this.props.title}</Tittle>
-                <p> R${this.props.value},00  | Data: {this.props.dueDate}</p>
-                <MuiThemeProvider theme={myTheme}>
-                <Button onClick={() => this.props.detailsTeste(this.props.id)}
-                    variant="contained" color= "primary">
-                      {this.props.taken === false ? "VER MAIS" : "CONTRATADO"}
-                </Button>
-                </MuiThemeProvider>
-                
+            <Container>
+                <Card className="text-center" style={{ width: '16rem'}}>
+                <Card.Img variant="top" src="https://picsum.photos/200/200" />
+                <Card.Body>
+                    <Card.Title>{this.props.title}</Card.Title>
+                    <Card.Text>
+                    R${this.props.value},00  | Data: {this.props.dueDate}
+                    </Card.Text>
+                    <MuiThemeProvider theme={myTheme}>
+                        <Button onClick={() => this.props.detailsTeste(this.props.id)}
+                            variant="contained" color="primary">
+                            {this.props.taken === false ? "VER MAIS" : "CONTRATADO"}
+                        </Button>
+                    </MuiThemeProvider>
+                </Card.Body>
             </Card>
-        )        
+            </Container>
+            
+        )
     }
 }
 export default JobCard
