@@ -44,8 +44,8 @@ class Jobs extends React.Component {
   }
 
   render() {
-    const pickArrayToRender =() => {
-      if (!this.props.searchedJob) {
+    const pickArrayToRender = () => {      
+      if (!this.props.searchedJob && !this.state.filteredCards.length) {
         return <JobsGridCard allCards={this.state.allCards} />
       } else if (!this.state.filteredCards.length) {
         return (
@@ -57,6 +57,7 @@ class Jobs extends React.Component {
         return <JobsGridCard allCards={this.state.filteredCards} />
       }
     }
+    
     return (
       <div>
         <Filter
