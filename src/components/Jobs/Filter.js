@@ -33,7 +33,7 @@ const P = styled.p`
     margin: 10px;
     margin-left: 7em;
     @media (min-device-width: 320px) and (max-device-width: 420px) { 
-        padding-left: 0;
+        margin-left: 0;
     }
 `
 
