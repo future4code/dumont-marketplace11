@@ -3,21 +3,15 @@ import React from 'react';
 import FormControl from '@material-ui/core/FormControl';
 import styled from "styled-components";
 
-const Div = styled.div`
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 2em;
-    @media (min-device-width: 320px) and (max-device-width: 420px) {
-        flex-direction: column;
-    }
-`
 const AllFilters = styled.div`
     margin: auto;
     display: flex;
     flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin-top: 2em;
     gap: 15px;
-    width: 70vw;
+    width: 80vw;
     @media (min-device-width: 320px) and (max-device-width: 420px) { 
         width: 70%;
         margin-bottom: 0;
@@ -30,7 +24,6 @@ const P = styled.p`
 	color: #8662d0;
     font-size: 30px;
     margin: 10px;
-    margin-left: 7em;
     @media (min-device-width: 320px) and (max-device-width: 420px) { 
         margin-left: 0;
     }
@@ -201,9 +194,9 @@ class Filter extends React.Component {
 
     render() {
         return (
-            <Div>
-                <P>Filtros:</P>
+            <div>
                 <AllFilters>
+                <P>Filtros:</P>
                     <FormControl variant="outlined">
                         <TextField
                             size="medium"
@@ -266,13 +259,15 @@ class Filter extends React.Component {
                         </Select>
                     </FormControl>
 
+                    
                     <Button
                         variant="contained" color="primary"
                         onClick={this.onClickClearFilters}
                     >Limpar</Button>
+                
                 </AllFilters>
 
-            </Div>
+            </div>
 
         )
     }

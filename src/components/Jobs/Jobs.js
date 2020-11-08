@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React from 'react'
 import JobsGridCard from './JobsGridCard'
 import axios from 'axios'
 import Filter from './Filter'
@@ -22,7 +22,7 @@ class Jobs extends React.Component {
     allCards: [],
     filteredCards: [],
     seeInfo: false,
-    untakeAll: false // Uso apenas dos desenvolvedores
+    untakeAll: false, // Uso apenas dos desenvolvedores
   }
 
   componentDidMount() {
@@ -41,13 +41,15 @@ class Jobs extends React.Component {
   fetchAllCards = () => {
     axios.get(urlBase)
       .then((res) => {
+
         this.setState({ allCards: res.data.jobs },
           () => {
             this.untakeAllJobs()
-        })
+          })
       }).catch((err) => {
         console.log(err.message)
       })
+
   }
 
   fetchFilteredArray = (array) => {
