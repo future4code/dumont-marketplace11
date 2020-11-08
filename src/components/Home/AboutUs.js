@@ -7,20 +7,36 @@ const Div = styled.div`
     display: flex;
     padding: 2em;
     background-color: #9f8fd9;
-    height: 25em;
+    height: 25%;
     color: #311355;
+    @media (min-device-width: 320px) and (max-device-width: 420px) {
+        flex-direction: column;
+        padding: 4em 0;
+  }
+`
+const Img = styled.img`
+    @media (min-device-width: 320px) and (max-device-width: 420px) {
+    width: 95%;
+    padding-left: 2em;
+  }
 `
 
 const H1 = styled.h1`
     font-family: nove, sans-serif;
     text-align: end;
-    padding: 15px 50px;
+    padding: 20px 50px;
+    @media (min-device-width: 320px) and (max-device-width: 420px) {
+    text-align: center;
+  }
 `
 const P = styled.p`
     margin: 0 60px;
     font-weight: bold;
     text-align: justify;
     font-family: acumin-pro, sans-serif;
+    @media (min-device-width: 320px) and (max-device-width: 420px) {
+        font-size: 20px;
+    }
 `
 
 class AboutUs extends React.Component {
@@ -29,7 +45,7 @@ class AboutUs extends React.Component {
         return (
                 <Div>
                     <div>
-                        <img src={slogan}/>
+                        <Img src={slogan}/>
                     </div>
                     <div>
                     <H1>Quem somos?</H1>

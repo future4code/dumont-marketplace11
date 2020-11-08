@@ -5,7 +5,8 @@ import pick from '../../img/pick.svg'
 import theOne from '../../img/theOne.svg'
 
 const Div = styled.div`
-    height: 25em;
+    height: 30%;
+    padding: 2em 0;
     color: #8662d0;
 `
 
@@ -14,7 +15,10 @@ const ContainerElements = styled.div`
     justify-content: space-around;
     align-items: center;
     margin: 0 20px;
-
+    @media (min-device-width: 320px) and (max-device-width: 420px) {
+        flex-direction: column;
+        padding: 2em 0;
+  }
 `
 
 const ImgP = styled.div`
@@ -22,6 +26,9 @@ const ImgP = styled.div`
     flex-direction: column;
     align-items: center;
     justify-content: center;  
+    @media (min-device-width: 320px) and (max-device-width: 420px) {
+        padding-bottom: 2em;
+  }
 `;
 
 const ImgTheOne = styled.div`
@@ -36,14 +43,26 @@ const P = styled.p`
     font-weight: bold;
     text-align: justify;
     padding: 20px 50px 0 50px;
+    @media (min-device-width: 320px) and (max-device-width: 420px) {
+        font-size: 20px;
+        text-align: center;
+    }
 `
 
 const H1 = styled.h1`
     font-family: nove, sans-serif;
-    padding: 40px;
+    padding: 40px 40px 40px 70px;
+    @media (min-device-width: 320px) and (max-device-width: 420px) {
+        padding: 1em 0 0 0;
+        text-align: center;
+    }
+
 `
 const Img = styled.img`
     width: 20%;
+    @media (min-device-width: 320px) and (max-device-width: 420px) {
+        width: 30%;
+    }
 `
 const ImgPick = styled.img`
     width: 17%;
