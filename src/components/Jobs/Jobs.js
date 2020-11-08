@@ -17,23 +17,34 @@ const P = styled.p`
 
 const urlBase = "https://us-central1-labenu-apis.cloudfunctions.net/futureNinjasOne/jobs"
 
-
 class Jobs extends React.Component {
   state = {
     allCards: [],
     filteredCards: [],
     seeInfo: false,
-    cardDet: ""
+    untakeAll: false // Uso apenas dos desenvolvedores
   }
 
   componentDidMount() {
     this.fetchAllCards()
   }
 
+  untakeAllJobs = () => {
+    if (this.state.untakeAll) {
+      for (let job of this.state.allCards) {
+        axios.put(`${urlBase}/${job.id}/giveup`)
+      }
+      this.setState({ untakeAll: false })
+    }
+  }
+
   fetchAllCards = () => {
     axios.get(urlBase)
       .then((res) => {
-        this.setState({ allCards: res.data.jobs })
+        this.setState({ allCards: res.data.jobs },
+          () => {
+            this.untakeAllJobs()
+        })
       }).catch((err) => {
         console.log(err.message)
       })
@@ -44,9 +55,9 @@ class Jobs extends React.Component {
   }
 
   render() {
-    const pickArrayToRender = () => {      
+    const pickArrayToRender = () => {
       if (!this.props.searchedJob && !this.state.filteredCards.length) {
-        return <JobsGridCard allCards={this.state.allCards} />
+        return <JobsGridCard allCards={this.state.allCards} fetchAllCards={this.fetchAllCards} />
       } else if (!this.state.filteredCards.length) {
         return (
           <NotFoundContainer>
@@ -57,7 +68,7 @@ class Jobs extends React.Component {
         return <JobsGridCard allCards={this.state.filteredCards} fetchAllCards={this.fetchAllCards} />
       }
     }
-    
+
     return (
       <div>
         <Filter
