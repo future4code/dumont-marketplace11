@@ -30,6 +30,10 @@ class App extends React.Component {
 		this.setState({ inputSearchValue: event.target.value, })
 	}
 
+	deleteInvalidJobs = () => {
+		
+	}
+
 	render() {
 		let renderedPage = ""
 		switch (this.state.currentPage) {
