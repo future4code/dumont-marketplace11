@@ -15,11 +15,15 @@ const Img = styled.img`
 const DivDetails = styled.div`
     display: flex;
     justify-content: space-between;
+    @media (min-device-width: 320px) and (max-device-width: 420px) {
+        display: none;
+  }
+
 `
 
 const Div = styled.div`
     text-align: center;
-    padding: 15px 10px;
+    padding: 15px 10px 0px 10px;
     cursor: pointer;
     &:hover {
         background-color: #CFCFCF;

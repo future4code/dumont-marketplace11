@@ -5,7 +5,6 @@ import { createMuiTheme, MuiThemeProvider} from '@material-ui/core'
 import { TextField, Button } from "@material-ui/core";
 import lupa from "../img/lupa.svg";
 import home from "../img/casa.svg";
-import homeHover from "../img/home.svg";
 
 const myTheme = createMuiTheme({
   palette: {
@@ -21,18 +20,30 @@ const NavHeader = styled.header`
   align-items: center;
   justify-content: space-between;
   background-color: rgb(184, 163, 224);
-  
+  @media (min-device-width: 320px) and (max-device-width: 420px) {
+        flex-direction: column;
+        padding: 2em 0;
+  }
+
 `;
 const Section = styled.div`
   padding-left: 50px;
   width: 30vw;
   display: flex;
+  @media (min-device-width: 320px) and (max-device-width: 420px) {
+    width: 80%;
+    margin: 1em 0;
+  }
 `;
 
 const Logo = styled.img`
   width: 15%;
   padding: 0 10px;
+  @media (min-device-width: 320px) and (max-device-width: 420px) {
+    width: 80%;
+  }
 `;
+
 const Lupa = styled.img`
   width: 13%;
   padding-left: 10px;
@@ -41,9 +52,10 @@ const Lupa = styled.img`
 const Home = styled.img`
  width: 3%;
  cursor: pointer;
- &:hover{
-  
- }
+ @media (min-device-width: 320px) and (max-device-width: 420px) {
+    width: 18%;
+    margin-bottom: 1.5em;
+  }
 `
 
 class NavBar extends React.Component {
