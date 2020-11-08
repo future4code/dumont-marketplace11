@@ -1,7 +1,6 @@
-import { MenuItem, Select, TextField } from '@material-ui/core';
+import { Button, MenuItem, Select, TextField } from '@material-ui/core';
 import React from 'react';
 import FormControl from '@material-ui/core/FormControl';
-import InputLabel from '@material-ui/core/InputLabel';
 import styled from "styled-components";
 
 const Div = styled.div`
@@ -71,38 +70,6 @@ class Filter extends React.Component {
 
         return filteredByBoth
     }
-
-    /*
-        ordenadoPorTitulo = sortTitleAlphabetically(allCards) (se estado vazio = allCards)
-        ordenadoPorPreço = sortByPrice(allCards)
-        ordenadoPorData = sortByDueDate(allCards)
-
-        Se eu selecionar uma das ordenações, as outras assumem o valor nulo
-        Quando assumem nulo, retornam o que recebem, sem ordenar
-
-        sortByPrice(sortTitleAlphabetically(allCards))
-        Por título:
-            sortByPrice(ordenadoPorTitulo)
-            ordenadoPorTitulo
-
-        sortByDueDate(sortByPrice(sortTitleAlphabetically(allCards)))
-        
-        Por data:
-            sortByDueDate(sortByPrice(allCards))
-            sortByDueDate(allCards)
-            ordenadoPorData
-
-        Por título:
-            sortByDueDate(sortByPrice(ordenadoPorTítulo))
-            sortByDueDate(ordenadoPorTítulo)
-            ordenadoPorTítulo
-
-        Por preço:
-            sortByDueDate(sortByPrice(allCards))
-            sortByDueDate(ordenadoPorPreço)
-            ordenadoPorPreço
-
-    */
 
     sortTitleAlphabetically = (arrayOfObjects) => {
         if (!this.state.sortTitleBy) { return arrayOfObjects }
@@ -220,6 +187,18 @@ class Filter extends React.Component {
         })
     }
 
+    onClickClearFilters = () => {
+        this.setState({
+            sortTitleBy: "",
+            sortPriceBy: "",
+            sortDateBy: "",
+            minValue: "",
+            maxValue: ""
+        }, () => {
+            this.updateCardsArray(this.props.searchedJob)
+        })
+    }
+
     render() {
         return (
             <Div>
@@ -230,7 +209,7 @@ class Filter extends React.Component {
                             size="medium"
                             value={this.state.minValue}
                             type="number"
-                            min="0"
+                            inputProps={{ min: 0 }}
                             onChange={this.onChangeMinInput}
                             label="Valor mínimo"
                             variant="outlined"
@@ -243,7 +222,7 @@ class Filter extends React.Component {
                             size="medium"
                             value={this.state.maxValue}
                             type="number"
-                            min="0"
+                            inputProps={{ min: 0 }}
                             onChange={this.onChangeMaxInput}
                             label="Valor máximo"
                             variant="outlined"
@@ -257,7 +236,7 @@ class Filter extends React.Component {
                             value={this.state.sortTitleBy}
                             onChange={this.onChangeSortByTitle}
                         >
-                            <MenuItem value="" disabled>Ordem Alfabetica</MenuItem>
+                            <MenuItem value="" disabled>Nome</MenuItem>
                             <MenuItem value="A-Z">A-Z</MenuItem>
                             <MenuItem value="Z-A">Z-A</MenuItem>
                         </Select>
@@ -269,7 +248,7 @@ class Filter extends React.Component {
                             value={this.state.sortPriceBy}
                             onChange={this.onChangeSortByPrice}>
 
-                            <MenuItem value="" disabled>Ordenar por preço</MenuItem>
+                            <MenuItem value="" disabled>Preço</MenuItem>
                             <MenuItem value="cheapest">Crescente</MenuItem>
                             <MenuItem value="priciest">Decrescente</MenuItem>
                         </Select>
@@ -281,11 +260,16 @@ class Filter extends React.Component {
                             value={this.state.sortDateBy}
                             onChange={this.onChangeSortByDate}>
 
-                            <MenuItem value="" disabled>Ordenar por data</MenuItem>
+                            <MenuItem value="" disabled>Data</MenuItem>
                             <MenuItem value="newest">Mais próxima</MenuItem>
                             <MenuItem value="oldest">Mais distante</MenuItem>
                         </Select>
                     </FormControl>
+
+                    <Button
+                        variant="contained" color="primary"
+                        onClick={this.onClickClearFilters}
+                    >Limpar</Button>
                 </AllFilters>
 
             </Div>

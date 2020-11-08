@@ -43,6 +43,7 @@ class JobCardDetails extends React.Component {
     takeJob = (id) => {
         axios.put(`${urlBase}/${id}/take`)
             .then((response) => {
+                this.props.fetchAllCards()
                 this.setState({
                     taken: response.data.taken
                 })
@@ -64,24 +65,20 @@ class JobCardDetails extends React.Component {
                 </Modal.Body>
 
                 <Modal.Footer>
-                    
-                        <MuiThemeProvider theme={myTheme}>
-                            <SpacedButton>
-                                <Button variant="contained" color="secundary" onClick={this.props.close}>
+                    <MuiThemeProvider theme={myTheme}>
+                        <SpacedButton>
+                            <Button variant="contained" color="secundary" onClick={this.props.close}>
                                 Fechar
                                 </Button>
-                            </SpacedButton>
+                        </SpacedButton>
 
-                            <Button onClick={() => {
-                                this.takeJob(this.state.details.id)
-                                this.props.close()
-                                this.props.fetchAllCards()
-                            }} variant="contained" color="primary"  >
-                                CONTRATAR
+                        <Button onClick={() => {
+                            this.takeJob(this.state.details.id)
+                            this.props.close()                            
+                        }} variant="contained" color="primary"  >
+                            CONTRATAR
                         </Button>
-                        </MuiThemeProvider>
-                
-
+                    </MuiThemeProvider>
                 </Modal.Footer>
 
             </Modal>
