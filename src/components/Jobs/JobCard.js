@@ -21,11 +21,10 @@ align-items: center;
 class JobCard extends React.Component {
 
     render() {
-
         return (
             <Container>
                 <Card className="text-center" style={{ width: '16rem'}}>
-                <Card.Img variant="top" src="https://picsum.photos/200/200" />
+                <Card.Img variant="top" src={this.props.photo} />
                 <Card.Body>
                     <Card.Title>{this.props.title}</Card.Title>
                     <Card.Text>

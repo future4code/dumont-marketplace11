@@ -31,17 +31,17 @@ class JobsGridCard extends React.Component {
         })
     }
 
-
     closeCard = () => {
         this.setState({ seeInfo: false })
     }
 
-    render() {
+    
 
+    render() {
         const renderSeeDet = this.state.seeInfo ? <JobCardDetails idProps={this.state.idCard} close={this.closeCard} show={this.seeDetails} fetchAllCards={this.props.fetchAllCards} /> : null
 
-        const renderedJobs = this.props.allCards.map((item) => {
-            return (<JobCard key={item.id} id={item.id} title={item.title} 
+        const renderedJobs = this.props.allCards.map((item, i) => {
+            return (<JobCard key={item.id} id={item.id} title={item.title} photo={`https://picsum.photos/200/200/?a=${i}`}
                 value={item.value} dueDate={item.dueDate}  detailsTeste={this.seeDetails} taken={item.taken}/>)
         })
 
