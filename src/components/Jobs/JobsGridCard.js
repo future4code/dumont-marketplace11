@@ -12,6 +12,10 @@ const Container = styled.div`
     margin: 1em;
     align-items: center;
     justify-content: center;
+
+    @media (min-device-width: 320px) and (max-device-width: 420px) { 
+        grid-template-columns: 1fr;
+    }
 `
 
 class JobsGridCard extends React.Component {
@@ -27,13 +31,14 @@ class JobsGridCard extends React.Component {
         })
     }
 
+
     closeCard = () => {
         this.setState({ seeInfo: false })
     }
 
     render() {
 
-        const renderSeeDet = this.state.seeInfo ? <JobCardDetails idProps={this.state.idCard} close={this.closeCard} fetchAllCards={this.props.fetchAllCards} /> : null
+        const renderSeeDet = this.state.seeInfo ? <JobCardDetails idProps={this.state.idCard} close={this.closeCard} show={this.seeDetails} fetchAllCards={this.props.fetchAllCards} /> : null
 
         const renderedJobs = this.props.allCards.map((item) => {
             return (<JobCard key={item.id} id={item.id} title={item.title} 

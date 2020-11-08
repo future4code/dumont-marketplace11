@@ -9,12 +9,32 @@ const Div = styled.div`
     justify-content: center;
     align-items: center;
     margin: 2em;
+    @media (min-device-width: 320px) and (max-device-width: 420px) {
+        flex-direction: column;
+    }
 `
+const AllFilters = styled.div`
+    margin: auto;
+    display: flex;
+    flex-direction: row;
+    gap: 15px;
+    width: 70vw;
+    @media (min-device-width: 320px) and (max-device-width: 420px) { 
+        width: 70%;
+        margin-bottom: 0;
+        flex-direction: column;
+}
+`
+
 const P = styled.p`
     font-family: nove, sans-serif;
 	color: #8662d0;
     font-size: 30px;
-    margin: 10px 20px 10px 10px;
+    margin: 10px;
+    margin-left: 7em;
+    @media (min-device-width: 320px) and (max-device-width: 420px) { 
+        padding-left: 0;
+    }
 `
 
 class Filter extends React.Component {
@@ -25,7 +45,7 @@ class Filter extends React.Component {
         minValue: "",
         maxValue: "",
     }
-    
+
     filterByText = (arrayOfObjects, text) => {
         const filteredArray = arrayOfObjects.filter((object) => {
             return object.title.toLowerCase().includes(text.toLowerCase())
@@ -204,68 +224,70 @@ class Filter extends React.Component {
         return (
             <Div>
                 <P>Filtros:</P>
-                <FormControl variant="outlined">
-                    <TextField 
-                    size="medium" 
-                    value={this.state.minValue}  
-                    type="number" 
-                    min="0"
-                    onChange={this.onChangeMinInput} 
-                    label="Valor mínimo" 
-                    variant="outlined" 
+                <AllFilters>
+                    <FormControl variant="outlined">
+                        <TextField
+                            size="medium"
+                            value={this.state.minValue}
+                            type="number"
+                            min="0"
+                            onChange={this.onChangeMinInput}
+                            label="Valor mínimo"
+                            variant="outlined"
 
-                    />
-                </FormControl>
+                        />
+                    </FormControl>
 
-                <FormControl variant="outlined">
-                    <TextField
-                        size="medium"
-                        value={this.state.maxValue}
-                        type="number"
-                        min="0"
-                        onChange={this.onChangeMaxInput}
-                        label="Valor máximo"
-                        variant="outlined"
-                    />
-                </FormControl>
+                    <FormControl variant="outlined">
+                        <TextField
+                            size="medium"
+                            value={this.state.maxValue}
+                            type="number"
+                            min="0"
+                            onChange={this.onChangeMaxInput}
+                            label="Valor máximo"
+                            variant="outlined"
+                        />
+                    </FormControl>
 
-                <FormControl variant="outlined">
-                    <Select
-                        displayEmpty
-                        id="ordenar"
-                        value={this.state.sortTitleBy}
-                        onChange={this.onChangeSortByTitle}
-                    
-                    >
-                        <MenuItem value="" disabled>Ordem Alfabetica</MenuItem>
-                        <MenuItem value="A-Z">A-Z</MenuItem>
-                        <MenuItem value="Z-A">Z-A</MenuItem>
-                    </Select>
-                </FormControl>
+                    <FormControl variant="outlined">
+                        <Select
+                            displayEmpty
+                            id="ordenar"
+                            value={this.state.sortTitleBy}
+                            onChange={this.onChangeSortByTitle}
+                        >
+                            <MenuItem value="" disabled>Ordem Alfabetica</MenuItem>
+                            <MenuItem value="A-Z">A-Z</MenuItem>
+                            <MenuItem value="Z-A">Z-A</MenuItem>
+                        </Select>
+                    </FormControl>
 
-                <FormControl variant="outlined">
-                    <Select
-                        displayEmpty
-                        value={this.state.sortPriceBy}
-                        onChange={this.onChangeSortByPrice}>
+                    <FormControl variant="outlined">
+                        <Select
+                            displayEmpty
+                            value={this.state.sortPriceBy}
+                            onChange={this.onChangeSortByPrice}>
 
-                        <MenuItem value="" disabled>Ordenar por preço</MenuItem>
-                        <MenuItem value="cheapest">Crescente</MenuItem>
-                        <MenuItem value="priciest">Decrescente</MenuItem>
-                    </Select>
-                </FormControl>
+                            <MenuItem value="" disabled>Ordenar por preço</MenuItem>
+                            <MenuItem value="cheapest">Crescente</MenuItem>
+                            <MenuItem value="priciest">Decrescente</MenuItem>
+                        </Select>
+                    </FormControl>
 
-                <FormControl variant="outlined">
-                    <Select
-                        displayEmpty
-                        value={this.state.sortDateBy}
-                        onChange={this.onChangeSortByDate}>
+                    <FormControl variant="outlined">
+                        <Select
+                            displayEmpty
+                            value={this.state.sortDateBy}
+                            onChange={this.onChangeSortByDate}>
 
-                        <MenuItem value="" disabled>Ordenar por data</MenuItem>
-                        <MenuItem value="newest">Mais próxima</MenuItem>
-                        <MenuItem value="oldest">Mais distante</MenuItem>
-                    </Select>
-                </FormControl>
+                            <MenuItem value="" disabled>Ordenar por data</MenuItem>
+                            <MenuItem value="newest">Mais próxima</MenuItem>
+                            <MenuItem value="oldest">Mais distante</MenuItem>
+                        </Select>
+                    </FormControl>
+                </AllFilters>
+
             </Div>
 
         )

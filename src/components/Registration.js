@@ -7,11 +7,11 @@ import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select'
 import styled from 'styled-components';
 import 'date-fns';
-import { createMuiTheme, MuiThemeProvider} from '@material-ui/core'
+import { createMuiTheme, MuiThemeProvider } from '@material-ui/core'
 import DateFnsUtils from '@date-io/date-fns';
 import {
-  MuiPickersUtilsProvider,
-  KeyboardDatePicker
+	MuiPickersUtilsProvider,
+	KeyboardDatePicker
 } from '@material-ui/pickers';
 
 const myTheme = createMuiTheme({
@@ -20,7 +20,7 @@ const myTheme = createMuiTheme({
 			main: "#8D6AD9"
 		}
 	},
-  })
+})
 
 const FormContainer = styled.form`
 	padding: 20px;
@@ -30,6 +30,9 @@ const FormContainer = styled.form`
 	flex-direction: column;
 	gap: 10px;
 	width: 30vw;
+	@media (min-device-width: 320px) and (max-device-width: 420px) { 
+		width: 70%;
+	}
 `
 const H1 = styled.h1`
 	margin: 1.5em 0 0.5em 0;
@@ -62,42 +65,42 @@ class Registration extends React.Component {
 			taken: false
 		}
 
-		if ( this.verifyFields(this.state.inputName, body.title, body.description, body.value) ){
-			this.setState({inProgress: true})
-			axios.post( baseUrl, body )
-			.then(() => {
-				window.alert(`Obrigada, ${this.state.inputName}, seu serviço foi cadastrado com sucesso <3`)
-				this.setState({ 
-					inputName: "",
-					inputTitle: "", 
-					inputDescription: "", 
-					inputValue: "", 
-					inProgress: false 
+		if (this.verifyFields(this.state.inputName, body.title, body.description, body.value)) {
+			this.setState({ inProgress: true })
+			axios.post(baseUrl, body)
+				.then(() => {
+					window.alert(`Obrigada, ${this.state.inputName}, seu serviço foi cadastrado com sucesso <3`)
+					this.setState({
+						inputName: "",
+						inputTitle: "",
+						inputDescription: "",
+						inputValue: "",
+						inProgress: false
+					})
+				}).catch(error => {
+					console.log(error.message)
 				})
-			}).catch(error => {
-				console.log(error.message)
-			})
 		}
 	}
 
-	verifyFields = ( name, title, description, value ) => {
-		if ( name !== ""){
-			if ( title !== "" ){ 
-				if ( description !== "" ){
-					if ( value !== "" ){
+	verifyFields = (name, title, description, value) => {
+		if (name !== "") {
+			if (title !== "") {
+				if (description !== "") {
+					if (value !== "") {
 						return true
-					}else {
+					} else {
 						window.alert("Por favor, informe o valor do serviço")
 					}
-				}else {
+				} else {
 					window.alert("Por favor, informe uma descrição do seu serviço")
 				}
-			}else {
+			} else {
 				window.alert("Por favor, informe o título do serviço")
 			}
-		}else {
+		} else {
 			window.alert("Por favor, informe seu nome")
-		}			
+		}
 	}
 
 	onChangeInputName = (event) => {
@@ -121,10 +124,10 @@ class Registration extends React.Component {
 	}
 
 	handleDateChange = (date) => {
-	   this.setState({selectedDate: date })
+		this.setState({ selectedDate: date })
 	};
 
-	render(){
+	render() {
 		const paymentMethods = ["Débito", "Crédito", "Paypal", "Picpay"]
 		const paymentMethodsList = paymentMethods.map((paymentMethod, id) => (
 			<MenuItem key={id} value={paymentMethod}>{paymentMethod}</MenuItem>
@@ -133,65 +136,70 @@ class Registration extends React.Component {
 		return (
 			<MuiThemeProvider theme={myTheme}>
 				<H1>Seja um ninja!</H1>
-			<FormContainer noValidate>
-				<TextField 
-                    size="small" 
-                    value={this.state.inputName}  
-                    onChange={this.onChangeInputName} 
-                    label="Nome" 
-                    variant="outlined" 
-                />
-				<TextField 
-                    size="small" 
-                    value={this.state.inputTitle}  
-                    onChange={this.onChangeInputTitle} 
-                    label="Título" 
-                    variant="outlined" 
-                />
-				<TextField 
-					size="small" 
-					value={this.state.inputDescription}  
-                    onChange={this.onChangeInputDescription}
-                    label="Descrição" 
-                    variant="outlined" 
-                />
-				<TextField 
-					size="small" 
-					value={this.state.inputValue}  
-                    onChange={this.onChangeInputValue}
-                    label="Valor" 
-                    variant="outlined" 
-                />
 
-				<FormControl variant="outlined" >
-					<InputLabel id="demo-simple-select-outlined-label">Forma de Pagamento</InputLabel>
-					<Select
-						labelId="demo-simple-select-outlined-label"
-						id="demo-simple-select-outlined"
-						value={this.state.selectedPaymentMethod}
-						onChange={this.handlePaymentMethods}
-						label="Forma de Pagamento"
-					>
-						{paymentMethodsList}	
-					</Select>
-				</FormControl>
-				<MuiPickersUtilsProvider utils={DateFnsUtils}>
-					<KeyboardDatePicker
-						disableToolbar
-						variant="inline"
-						format="dd/MM/yyyy"
-						margin="normal"
-						id="date-picker-inline"
-						label="Prazo de entrega do serviço"
-						value={this.state.selectedDate}
-						onChange={this.handleDateChange}
+				<FormContainer noValidate>
+
+					<TextField
+						size="small"
+						value={this.state.inputName}
+						onChange={this.onChangeInputName}
+						label="Nome"
+						variant="outlined"
 					/>
-				</MuiPickersUtilsProvider>
-				<Button variant="contained" onClick={this.createJob} color="primary">
-                    Cadastrar
-                </Button>	
-				{this.state.inProgress ? <LinearProgress /> : null}
-			</FormContainer>
+					<TextField
+						size="small"
+						value={this.state.inputTitle}
+						onChange={this.onChangeInputTitle}
+						label="Título"
+						variant="outlined"
+					/>
+					<TextField
+						size="small"
+						value={this.state.inputDescription}
+						onChange={this.onChangeInputDescription}
+						label="Descrição"
+						variant="outlined"
+					/>
+					<TextField
+						size="small"
+						value={this.state.inputValue}
+						onChange={this.onChangeInputValue}
+						label="Valor"
+						variant="outlined"
+					/>
+
+
+
+					<FormControl variant="outlined" >
+						<InputLabel id="demo-simple-select-outlined-label">Forma de Pagamento</InputLabel>
+						<Select
+							labelId="demo-simple-select-outlined-label"
+							id="demo-simple-select-outlined"
+							value={this.state.selectedPaymentMethod}
+							onChange={this.handlePaymentMethods}
+							label="Forma de Pagamento"
+						>
+							{paymentMethodsList}
+						</Select>
+					</FormControl>
+					<MuiPickersUtilsProvider utils={DateFnsUtils}>
+						<KeyboardDatePicker
+							disableToolbar
+							variant="inline"
+							format="dd/MM/yyyy"
+							margin="normal"
+							id="date-picker-inline"
+							label="Prazo de entrega do serviço"
+							value={this.state.selectedDate}
+							onChange={this.handleDateChange}
+						/>
+					</MuiPickersUtilsProvider>
+					<Button variant="contained" onClick={this.createJob} color="primary">
+						Cadastrar
+                </Button>
+					{this.state.inProgress ? <LinearProgress /> : null}
+				</FormContainer>
+
 			</MuiThemeProvider>
 		)
 	}
